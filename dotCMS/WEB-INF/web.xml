@@ -124,8 +124,12 @@
 		</init-param>
 	</filter>
 	<filter>
-		<filter-name>CasLoginFilter</filter-name>
-		<filter-class>com.dotmarketing.filters.CasLoginFilter</filter-class>
+		<filter-name>CasFrontendLoginFilter</filter-name>
+		<filter-class>com.dotmarketing.filters.cas.CasFrontendLoginFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>CasBackendLoginFilter</filter-name>
+		<filter-class>com.dotmarketing.filters.cas.CasBackendLoginFilter</filter-class>
 	</filter>
 
 	<!--END DOTMARKETING FILTERS-->
@@ -154,12 +158,23 @@
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>CasAuthenticationFilter</filter-name>
-		<url-pattern>/dotCMS/login/*</url-pattern>
+		<url-pattern>/dotCMS/login</url-pattern>
 		<url-pattern>/application/login/login.html</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
-		<filter-name>CasLoginFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<filter-name>CasFrontendLoginFilter</filter-name>
+		<url-pattern>/dotCMS/login</url-pattern>
+		<url-pattern>/application/login/login.html</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>CasAuthenticationFilter</filter-name>
+		<url-pattern>/html/portal/login.jsp</url-pattern>
+		<url-pattern>/c/portal_public/login</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>CasBackendLoginFilter</filter-name>
+		<url-pattern>/html/portal/login.jsp</url-pattern>
+		<url-pattern>/c/portal_public/login</url-pattern>
 	</filter-mapping>
 
   <filter-mapping>
