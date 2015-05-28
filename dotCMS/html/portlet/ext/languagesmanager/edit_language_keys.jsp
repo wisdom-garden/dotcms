@@ -140,12 +140,6 @@
 				}
 			}
 
-			var regex = new RegExp("^[A-Za-z0-9-_\.]+$");
-			if(isNew && !regex.test(key)) {
-				alert('<%= UtilMethods.escapeSingleQuotes(LanguageUtil.get(pageContext, "message.languagemanager.key.invalid")) %>');
-				Ext.get(currentLanguage + '-' + i + '-key').dom.focus();
-				return;
-			}
 		}
 		
 		for(var i=0; i<keysToAdd.length; i++){
