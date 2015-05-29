@@ -516,6 +516,7 @@ dojo.require("dojo.cookie");
 </script>
 
 <div id="admin-banner-logo-div">
+    <img src="/html/images/skin/menu.png"/>
     <h1>网站管理</h1>
 </div>
 
