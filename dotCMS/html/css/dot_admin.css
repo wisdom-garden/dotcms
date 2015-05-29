@@ -1,6 +1,7 @@
 /* NAV SUB STYLES 2.0 */
-#admin-banner-logo-div{position:absolute;top:0;left:0;height:50px;width:200px;text-indent:-9999px;background: url(/html/images/skin/menu-background.png) no-repeat 0 0;}
-#admin-banner-logo-div img{margin-top: 12px;margin-left: 12px;display: block;float: left}
+#admin-banner-logo-div{position:absolute;top:0;left:0;height:50px;width:240px;line-height: 50px;background: url(/html/images/skin/menu-background.png) no-repeat 0 0;}
+#admin-banner-logo-div img{margin-left: 12px;vertical-align: middle;}
+#admin-banner-logo-div span{margin-left: 34px;vertical-align: middle;color: white}
 #admin-site-tools-div {position:absolute; top:4px;right:30px;font-size: 85%;color:#ddd;}
 #admin-site-tools-div a{display:inline-block;color:#fff;text-decoration:none;vertical-align:top;padding:5px 0 0 0;margin-right:15px;}
 #admin-site-tools-div a:hover{}
