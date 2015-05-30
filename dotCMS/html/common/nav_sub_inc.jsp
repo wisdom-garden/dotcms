@@ -517,12 +517,20 @@ dojo.require("dojo.cookie");
 
 <div id="admin-banner-logo-div">
     <img src="/html/images/skin/menu.png"/>
-    <h1>网站管理</h1>
+    <span>网站管理</span>
 </div>
 
 <!-- Start Site Tools -->
 <% if (signedIn) { %>
     <div id="admin-site-tools-div">
+		<!-- Updates -->
+        <% if (licenseMessage != null) { %>
+            <a class="goEnterpriseLink" style="display:none;" href="<%=licenseURL%>" id="goEnterpriseLink"><span class="keyIcon"></span><%=licenseMessage%></a>
+        <% } %>
+
+   		<a id="autoUpdaterLink" style="display:none;" class="goEnterpriseLink"  href="javascript: showAutoUpdaterPopUp();"><span class="exclamation-red"></span><%= LanguageUtil.get(pageContext, "Update-available") %></a>
+		<!-- User Notifications -->
+			<a href="#" id="hasNotifications" style="display:none;" onclick="showNotifications();" ><span id="notificationsIcon" class="hostStoppedIcon"></a>
 		<!-- User Actions -->
 		<% if (request.getSession().getAttribute(WebKeys.PRINCIPAL_USER_ID) == null) { %>
 			<a href="#" id="account-trigger" onclick="toggleAccount();" class="trigger-off"><%=user.getFullName()%></a>
