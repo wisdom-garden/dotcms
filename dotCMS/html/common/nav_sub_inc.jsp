@@ -517,7 +517,7 @@ dojo.require("dojo.cookie");
 
 <div id="admin-banner-logo-div">
     <img src="/html/images/skin/menu.png"/>
-    <span>网站管理</span>
+    <span><%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-Title") %></span>
 </div>
 
 <!-- Start Site Tools -->
