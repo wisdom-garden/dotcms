@@ -2,12 +2,12 @@
 #admin-banner-logo-div{position:absolute;top:0;left:0;height:50px;width:240px;line-height: 50px;background: url(/html/images/skin/menu-background.png) no-repeat 0 0;}
 #admin-banner-logo-div img{margin-left: 12px;vertical-align: middle;}
 #admin-banner-logo-div span{margin-left: 34px;vertical-align: middle;color: white}
-#admin-site-tools-div {position:absolute; top:4px;right:30px;font-size: 85%;color:#ddd;}
+#admin-site-tools-div {position:absolute; top:7px;right:30px;font-size: 85%;color:#ddd;}
 #admin-site-tools-div a{display:inline-block;color:#fff;text-decoration:none;vertical-align:top;padding:5px 0 0 0;margin-right:15px;}
 #admin-site-tools-div a:hover{}
 #admin-site-tools-div a span{float:left;white-space:nowrap;margin:0 4px 0 0;}
 #admin-site-tools-div a.trigger-off{
-	background: url(/html/images/icons/chevron-menu.png) right -28px no-repeat;padding:5px 28px 0 10px;display:inline-block;height:30px;z-index:9999;outline:none;
+	background: url(/html/images/icons/chevron-menu.png) right -28px no-repeat;padding:7px 28px 0 10px;display:inline-block;height:27px;z-index:9999;outline:none;
 	-webkit-border-top-left-radius: 4px;-khtml-border-radius-topleft: 14px;	-moz-border-radius-topleft: 4px; border-top-left-radius: 4px;
 	-webkit-border-top-right-radius: 4px; -khtml-border-radius-topright: 14px; -moz-border-radius-topright: 4px; border-top-right-radius: 4px;
 }
