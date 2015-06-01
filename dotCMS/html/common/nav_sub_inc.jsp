@@ -504,11 +504,11 @@ dojo.require("dojo.cookie");
 	 function toggleAccount() {
 		if(document.getElementById("account-menu").style.display=="none") {
 			document.getElementById("account-menu").style.display="";
-			document.getElementById("closeTab").style.display="";
+			document.getElementById("closeAccountTab").style.display="";
 			document.getElementById("account-trigger").setAttribute("class", "trigger-on");
 		} else {
 			document.getElementById("account-menu").style.display="none";
-			document.getElementById("closeTab").style.display="none";
+			document.getElementById("closeAccountTab").style.display="none";
 			document.getElementById("account-trigger").setAttribute("class", "trigger-off");
 		}
 	}
@@ -516,11 +516,11 @@ dojo.require("dojo.cookie");
     function toggleLanguage() {
         if(document.getElementById("language-menu").style.display=="none") {
             document.getElementById("language-menu").style.display="";
-            document.getElementById("closeTab").style.display="";
+            document.getElementById("closeLanguageTab").style.display="";
             document.getElementById("language-trigger").setAttribute("class", "trigger-on");
         } else {
             document.getElementById("language-menu").style.display="none";
-            document.getElementById("closeTab").style.display="none";
+            document.getElementById("closeLanguageTab").style.display="none";
             document.getElementById("language-trigger").setAttribute("class", "trigger-off");
         }
     }
@@ -544,9 +544,9 @@ dojo.require("dojo.cookie");
 			<a href="#" id="hasNotifications" style="display:none;" onclick="showNotifications();" ><span id="notificationsIcon" class="hostStoppedIcon"></a>
 		<!-- User Actions -->
 		<% if (request.getSession().getAttribute(WebKeys.PRINCIPAL_USER_ID) == null) { %>
-			<a href="#" id="account-trigger" onclick="toggleAccount();" class="trigger-off"><%=user.getFullName()%></a>
+			<a href="#" id="account-trigger" onclick="toggleAccount();" class="trigger-off"><%=user.getFullName()%><i class="fa fa-angle-down"></i></a>
 	    <% } else { %>
-	        <a href="<%=CTX_PATH%>/portal<%=PortalUtil.getAuthorizedPath(request)%>/logout_as?referer=<%=CTX_PATH%>"><span class="plusIcon"></span><%= LanguageUtil.get(pageContext, "logout-as") %> <%=user.getFullName()%><i class="fa fa-angle-down"></i></a>
+	        <a href="<%=CTX_PATH%>/portal<%=PortalUtil.getAuthorizedPath(request)%>/logout_as?referer=<%=CTX_PATH%>"><span class="plusIcon"></span><%= LanguageUtil.get(pageContext, "logout-as") %> <%=user.getFullName()%></a>
 	    <% } %>
 
         <a href="#" id="language-trigger" onclick="toggleLanguage();" class="trigger-off">English<i class="fa fa-angle-down"></i></a>
@@ -579,7 +579,8 @@ dojo.require("dojo.cookie");
     </ul>
 </div>
 
-<div id="closeTab" onClick="toggleAccount();" style="display:none;"></div>
+<div id="closeAccountTab" class="closeTab" onClick="toggleAccount();" style="display:none;"></div>
+<div id="closeLanguageTab" class="closeTab" onClick="toggleLanguage();" style="display:none;"></div>
 
 <!-- End User Info Drop Down -->
 
