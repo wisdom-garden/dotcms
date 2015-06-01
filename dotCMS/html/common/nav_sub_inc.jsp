@@ -517,11 +517,11 @@ dojo.require("dojo.cookie");
         if(document.getElementById("language-menu").style.display=="none") {
             document.getElementById("language-menu").style.display="";
             document.getElementById("closeTab").style.display="";
-            document.getElementById("account-trigger").setAttribute("class", "trigger-on");
+            document.getElementById("language-trigger").setAttribute("class", "trigger-on");
         } else {
             document.getElementById("language-menu").style.display="none";
             document.getElementById("closeTab").style.display="none";
-            document.getElementById("account-trigger").setAttribute("class", "trigger-off");
+            document.getElementById("language-trigger").setAttribute("class", "trigger-off");
         }
     }
 </script>
@@ -546,10 +546,10 @@ dojo.require("dojo.cookie");
 		<% if (request.getSession().getAttribute(WebKeys.PRINCIPAL_USER_ID) == null) { %>
 			<a href="#" id="account-trigger" onclick="toggleAccount();" class="trigger-off"><%=user.getFullName()%></a>
 	    <% } else { %>
-	        <a href="<%=CTX_PATH%>/portal<%=PortalUtil.getAuthorizedPath(request)%>/logout_as?referer=<%=CTX_PATH%>"><span class="plusIcon"></span><%= LanguageUtil.get(pageContext, "logout-as") %> <%=user.getFullName()%></a>
+	        <a href="<%=CTX_PATH%>/portal<%=PortalUtil.getAuthorizedPath(request)%>/logout_as?referer=<%=CTX_PATH%>"><span class="plusIcon"></span><%= LanguageUtil.get(pageContext, "logout-as") %> <%=user.getFullName()%><i class="fa fa-angle-down"></i></a>
 	    <% } %>
 
-        <a href="#" id="language-trigger" onclick="toggleLanguage();" class="trigger-off"><i class="fa fa-angle-down"></i>简体中文</a>
+        <a href="#" id="language-trigger" onclick="toggleLanguage();" class="trigger-off">English<i class="fa fa-angle-down"></i></a>
 	</div>
 <% } %>
 
@@ -563,16 +563,18 @@ dojo.require("dojo.cookie");
 
 <!-- User Info Drop Down -->
 
-<div id="account-menu" class="account-flyout" style="display:none;">
-	<div class="my-account">
-        <a  href="<%=CTX_PATH%>/portal<%=PortalUtil.getAuthorizedPath(request)%>/logout?referer=<%=CTX_PATH%>"><%=LanguageUtil.get(pageContext, "Logout")%></a>
-    </div>
+<div id="account-menu" class="popup-flyout" style="display:none;">
+	<ul>
+        <li>
+            <a  href="<%=CTX_PATH%>/portal<%=PortalUtil.getAuthorizedPath(request)%>/logout?referer=<%=CTX_PATH%>"><%=LanguageUtil.get(pageContext, "Logout")%></a>
+        </li>
+    </ul>
 </div>
 
-<div id="language-menu" class="language-flyout" style="display:none;">
+<div id="language-menu" class="popup-flyout" style="display:none;">
     <ul>
-        <li>简体中文</li>
-        <li>繁体中文</li>
+        <li>Test</li>
+        <li>Test abc</li>
         <li>English</li>
     </ul>
 </div>
