@@ -513,6 +513,17 @@ dojo.require("dojo.cookie");
 		}
 	}
 
+    function toggleLanguage() {
+        if(document.getElementById("language-menu").style.display=="none") {
+            document.getElementById("language-menu").style.display="";
+            document.getElementById("closeTab").style.display="";
+            document.getElementById("account-trigger").setAttribute("class", "trigger-on");
+        } else {
+            document.getElementById("language-menu").style.display="none";
+            document.getElementById("closeTab").style.display="none";
+            document.getElementById("account-trigger").setAttribute("class", "trigger-off");
+        }
+    }
 </script>
 
 <div id="admin-banner-logo-div">
@@ -537,6 +548,8 @@ dojo.require("dojo.cookie");
 	    <% } else { %>
 	        <a href="<%=CTX_PATH%>/portal<%=PortalUtil.getAuthorizedPath(request)%>/logout_as?referer=<%=CTX_PATH%>"><span class="plusIcon"></span><%= LanguageUtil.get(pageContext, "logout-as") %> <%=user.getFullName()%></a>
 	    <% } %>
+
+        <a href="#" id="language-trigger" onclick="toggleLanguage();" class="trigger-off">简体中文</a>
 	</div>
 <% } %>
 
@@ -552,34 +565,16 @@ dojo.require("dojo.cookie");
 
 <div id="account-menu" class="account-flyout" style="display:none;">
 	<div class="my-account">
-		<h3><%=user.getFullName()%></h3>
-		<a href="javascript: portal_showMyAccount();toggleAccount();">
-			<%=LanguageUtil.get(pageContext, "my-account")%>
-		</a>
-	</div>
-	<div class="service-links">
-		<a  href="javascript:showAboutDotCMSMessage();toggleAccount();" ><%= LanguageUtil.get(pageContext, "about")  %></a>
-		<a  href="javascript:showDisclaimerMessage();toggleAccount();"><%= LanguageUtil.get(pageContext, "disclaimer")  %></a>
-		<a  href="#" onClick="dijit.byId('showSupport').show();toggleAccount();"><%=LanguageUtil.get(pageContext, "Support") %></a>
-	</div>
-	<div class="login-out">
-		<table>
-			<tbody>
-				<tr>
-					<td>
-						<a  href="<%=CTX_PATH%>/portal<%=PortalUtil.getAuthorizedPath(request)%>/logout?referer=<%=CTX_PATH%>"><%=LanguageUtil.get(pageContext, "Logout")%></a>
-					</td>
-					<% if (APILocator.getRoleAPI().doesUserHaveRole(user, APILocator.getRoleAPI().loadRoleByKey(Role.LOGIN_AS)) && request.getSession().getAttribute(WebKeys.PRINCIPAL_USER_ID) == null ) {%>
-						<td style="border-left:1px solid #d0d0d0;width:50%;"><a href="javascript: portal_showLoginAs();toggleAccount();"><%= LanguageUtil.get(pageContext, "login-as") %></a></td>
-				    <%}%>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+        <a  href="<%=CTX_PATH%>/portal<%=PortalUtil.getAuthorizedPath(request)%>/logout?referer=<%=CTX_PATH%>"><%=LanguageUtil.get(pageContext, "Logout")%></a>
+    </div>
+</div>
 
-    <% if (!hasRolesPortlet && APILocator.getUserAPI().isCMSAdmin(user) ) { %>
-        <a class="rolePortletLink" href="<%=portletLinkHREF%>"><%= LanguageUtil.get(pageContext, "warning-roles-portlet" )%></a>
-    <% } %>
+<div id="language-menu" class="language-flyout" style="display:none;">
+    <ul>
+        <li>简体中文</li>
+        <li>繁体中文</li>
+        <li>English</li>
+    </ul>
 </div>
 
 <div id="closeTab" onClick="toggleAccount();" style="display:none;"></div>
