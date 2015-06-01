@@ -81,7 +81,7 @@ THIS FILE AND ITS INCLUDES
 	<script type="text/javascript" src="/dwr/interface/BrowserAjax.js?b=<%= ReleaseInfo.getVersion() %>"></script>
 	<script type="text/javascript" src="/dwr/interface/UserAjax.js?b=<%= ReleaseInfo.getVersion() %>"></script>
 	<script type="text/javascript" src="/dwr/interface/InodeAjax.js?b=<%= ReleaseInfo.getVersion() %>"></script>
-
+	<script type="text/javascript" src="/html/js/jquery/jquery-1.8.2.min.js?b=<%= ReleaseInfo.getVersion() %>"></script>
     <script type="text/javascript">
 		dojo.require("dijit.Dialog");
 		dojo.require("dijit.form.Button");

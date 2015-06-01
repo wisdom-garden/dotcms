@@ -502,19 +502,29 @@ dojo.require("dojo.cookie");
 	}
 
 	 function toggleAccount() {
-		if(document.getElementById("account-menu").style.display=="none") {
+         document.getElementById("language-menu").style.display="none";
+         if(document.getElementById("account-menu").style.display=="none") {
+             var trigger = $("#account-trigger");
+             var menu = $("#account-menu");
+             var tleft = trigger.offset().left + trigger.width() / 2 - menu.width() / 2
+             menu.offset({left:tleft,top:50});
 			document.getElementById("account-menu").style.display="";
 			document.getElementById("closeAccountTab").style.display="";
 			document.getElementById("account-trigger").setAttribute("class", "trigger-on");
-		} else {
+         } else {
 			document.getElementById("account-menu").style.display="none";
 			document.getElementById("closeAccountTab").style.display="none";
 			document.getElementById("account-trigger").setAttribute("class", "trigger-off");
-		}
+         }
 	}
 
     function toggleLanguage() {
+        document.getElementById("account-menu").style.display="none";
         if(document.getElementById("language-menu").style.display=="none") {
+            var trigger = $("#language-trigger");
+            var menu = $("#language-menu");
+            var tleft = trigger.offset().left + trigger.width() / 2 - menu.width() / 2
+            menu.offset({left:tleft,top:50});
             document.getElementById("language-menu").style.display="";
             document.getElementById("closeLanguageTab").style.display="";
             document.getElementById("language-trigger").setAttribute("class", "trigger-on");
