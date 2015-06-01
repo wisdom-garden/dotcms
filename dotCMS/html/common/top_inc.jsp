@@ -47,15 +47,15 @@ THIS FILE AND ITS INCLUDES
 	
 	<!--[if IE]>
 		<link rel="stylesheet" type="text/css" href="/html/css/iehacks.css" />
-	<![endif]--> 
-    
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" href="/html/css/font-awesome.min.css" />
     <%
     String dojoLocaleConfig = "locale:'en-us'";    
     if(locale != null){
     	dojoLocaleConfig = "locale:'"+locale.getLanguage() + "-" + locale.getCountry().toLowerCase() + "',";    	
     }    
     %>
-   	    
+
    	<script type="text/javascript">
        	djConfig={
                parseOnLoad: true,

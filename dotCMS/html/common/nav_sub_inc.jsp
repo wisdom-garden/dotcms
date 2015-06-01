@@ -549,7 +549,7 @@ dojo.require("dojo.cookie");
 	        <a href="<%=CTX_PATH%>/portal<%=PortalUtil.getAuthorizedPath(request)%>/logout_as?referer=<%=CTX_PATH%>"><span class="plusIcon"></span><%= LanguageUtil.get(pageContext, "logout-as") %> <%=user.getFullName()%></a>
 	    <% } %>
 
-        <a href="#" id="language-trigger" onclick="toggleLanguage();" class="trigger-off">简体中文</a>
+        <a href="#" id="language-trigger" onclick="toggleLanguage();" class="trigger-off"><i class="fa fa-angle-down"></i>简体中文</a>
 	</div>
 <% } %>
 
