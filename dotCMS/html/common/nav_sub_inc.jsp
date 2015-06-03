@@ -502,38 +502,20 @@ dojo.require("dojo.cookie");
 	}
 
 	 function toggleAccount() {
-         document.getElementById("language-menu").style.display="none";
          if(document.getElementById("account-menu").style.display=="none") {
-             var trigger = $("#account-trigger");
-             var menu = $("#account-menu");
-             var tleft = trigger.offset().left + trigger.width() / 2 - menu.width() / 2
-             menu.offset({left:tleft,top:50});
-			document.getElementById("account-menu").style.display="";
-			document.getElementById("closeAccountTab").style.display="";
-			document.getElementById("account-trigger").setAttribute("class", "trigger-on");
+             var trigger = jQuery("#account-trigger");
+			 document.getElementById("account-menu").style.display="";
+			 document.getElementById("closeAccountTab").style.display="";
+             var menu = jQuery("#account-menu");
+             var tleft = trigger.offset().left + trigger.width() / 2 - menu.width() / 2;
+             menu.offset({left:tleft,top:49});
+			 document.getElementById("account-trigger").setAttribute("class", "trigger-on");
          } else {
-			document.getElementById("account-menu").style.display="none";
-			document.getElementById("closeAccountTab").style.display="none";
-			document.getElementById("account-trigger").setAttribute("class", "trigger-off");
+			 document.getElementById("account-menu").style.display="none";
+			 document.getElementById("closeAccountTab").style.display="none";
+			 document.getElementById("account-trigger").setAttribute("class", "trigger-off");
          }
 	}
-
-    function toggleLanguage() {
-        document.getElementById("account-menu").style.display="none";
-        if(document.getElementById("language-menu").style.display=="none") {
-            var trigger = $("#language-trigger");
-            var menu = $("#language-menu");
-            var tleft = trigger.offset().left + trigger.width() / 2 - menu.width() / 2
-            menu.offset({left:tleft,top:50});
-            document.getElementById("language-menu").style.display="";
-            document.getElementById("closeLanguageTab").style.display="";
-            document.getElementById("language-trigger").setAttribute("class", "trigger-on");
-        } else {
-            document.getElementById("language-menu").style.display="none";
-            document.getElementById("closeLanguageTab").style.display="none";
-            document.getElementById("language-trigger").setAttribute("class", "trigger-off");
-        }
-    }
 </script>
 
 <div id="admin-banner-logo-div">
@@ -558,8 +540,6 @@ dojo.require("dojo.cookie");
 	    <% } else { %>
 	        <a href="<%=CTX_PATH%>/portal<%=PortalUtil.getAuthorizedPath(request)%>/logout_as?referer=<%=CTX_PATH%>"><span class="plusIcon"></span><%= LanguageUtil.get(pageContext, "logout-as") %> <%=user.getFullName()%></a>
 	    <% } %>
-
-        <a href="#" id="language-trigger" onclick="toggleLanguage();" class="trigger-off">English<i class="fa fa-angle-down"></i></a>
 	</div>
 <% } %>
 
@@ -574,6 +554,7 @@ dojo.require("dojo.cookie");
 <!-- User Info Drop Down -->
 
 <div id="account-menu" class="popup-flyout" style="display:none;">
+    <div class="handle icon icon-popup-menu-handle"></div>
 	<ul>
         <li>
             <a  href="<%=CTX_PATH%>/portal<%=PortalUtil.getAuthorizedPath(request)%>/logout?referer=<%=CTX_PATH%>"><%=LanguageUtil.get(pageContext, "Logout")%></a>
@@ -581,16 +562,7 @@ dojo.require("dojo.cookie");
     </ul>
 </div>
 
-<div id="language-menu" class="popup-flyout" style="display:none;">
-    <ul>
-        <li>Test</li>
-        <li>Test abc</li>
-        <li>English</li>
-    </ul>
-</div>
-
 <div id="closeAccountTab" class="closeTab" onClick="toggleAccount();" style="display:none;"></div>
-<div id="closeLanguageTab" class="closeTab" onClick="toggleLanguage();" style="display:none;"></div>
 
 <!-- End User Info Drop Down -->
 

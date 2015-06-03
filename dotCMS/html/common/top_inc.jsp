@@ -83,6 +83,7 @@ THIS FILE AND ITS INCLUDES
 	<script type="text/javascript" src="/dwr/interface/InodeAjax.js?b=<%= ReleaseInfo.getVersion() %>"></script>
 	<script type="text/javascript" src="/html/js/jquery/jquery-1.8.2.min.js?b=<%= ReleaseInfo.getVersion() %>"></script>
     <script type="text/javascript">
+		$.noConflict();
 		dojo.require("dijit.Dialog");
 		dojo.require("dijit.form.Button");
 		dojo.require("dijit.form.CheckBox");
