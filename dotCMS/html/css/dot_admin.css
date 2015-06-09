@@ -1,5 +1,5 @@
 /* NAV SUB STYLES 2.0 */
-#admin-banner-logo-div{position:absolute;top:0;left:0;height:50px;width:240px;line-height: 50px;background: url(/html/images/skin/menu-background.png) no-repeat 0 0;font: 25px HiraginoSansGB W3, sans-serif;}
+#admin-banner-logo-div{position:absolute;top:0;left:0;height:50px;width:240px;line-height: 50px;background: url(/html/images/skin/menu-background.png) no-repeat 0 0;font: 20px HiraginoSansGB W3, sans-serif;}
 #admin-banner-logo-div img{margin-left: 12px;vertical-align: middle;line-height: 50px;}
 #admin-banner-logo-div span{margin-left: 34px;vertical-align: middle;color: white;line-height: 50px;}
 
