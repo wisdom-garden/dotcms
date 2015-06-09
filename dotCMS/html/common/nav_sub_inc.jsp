@@ -9,13 +9,14 @@
 <%@page import="com.liferay.portal.language.LanguageUtil"%>
 <%@page import="com.dotmarketing.business.Role"%>
 <%@page import="com.dotmarketing.business.APILocator"%>
-<%@ page import="com.dotmarketing.util.CompanyUtils" %>
+<%@page import="com.dotmarketing.util.CompanyUtils" %>
 <%@page import="com.dotmarketing.util.Config"%>
 <%@page import="com.liferay.portal.util.ReleaseInfo" %>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="com.dotmarketing.viewtools.JSONTool" %>
 <%@page import="com.dotmarketing.util.json.JSONObject" %>
 <%@page import="com.dotmarketing.util.json.JSONArray" %>
+<%@page import="java.util.Locale" %>
 <%
     boolean isCommunity = LicenseUtil.getLevel()==100;
     String licenseMessage = null;
@@ -453,6 +454,19 @@ dojo.require("dojo.cookie");
         window.open(href);
     }
 
+    function switchLanguage(lang){
+        if (window.location.search){
+            var searchPattern = /switchLocale=[a-z]{2}_[A-Z]{2}/
+            if (window.location.search.match(searchPattern)){
+                window.location.search = window.location.search.replace(searchPattern,"switchLocale=" + lang)
+            }else{
+                window.location.search += "&switchLocale=" + lang
+            }
+        }else{
+            window.location.search = "?switchLocale=" + lang
+        }
+    }
+
     function setTextContent(element, text) {
         while (element.firstChild!==null)
             element.removeChild(element.firstChild); // remove all existing content
@@ -502,13 +516,15 @@ dojo.require("dojo.cookie");
 	}
 
 	 function toggleAccount() {
+         document.getElementById("language-menu").style.display="none";
+         document.getElementById("closeLanguageTab").style.display="none";
          if(document.getElementById("account-menu").style.display=="none") {
-             var trigger = jQuery("#account-trigger");
 			 document.getElementById("account-menu").style.display="";
 			 document.getElementById("closeAccountTab").style.display="";
+             var trigger = jQuery("#account-trigger");
              var menu = jQuery("#account-menu");
-             var tleft = trigger.offset().left + trigger.width() / 2 - menu.width() / 2;
-             menu.offset({left:tleft,top:49});
+             var left = trigger.offset().left + trigger.width() / 2 - menu.width() / 2;
+             menu.offset({left:left,top:49});
 			 document.getElementById("account-trigger").setAttribute("class", "trigger-on");
          } else {
 			 document.getElementById("account-menu").style.display="none";
@@ -516,6 +532,24 @@ dojo.require("dojo.cookie");
 			 document.getElementById("account-trigger").setAttribute("class", "trigger-off");
          }
 	}
+
+    function toggleLanguage() {
+        document.getElementById("account-menu").style.display="none";
+        document.getElementById("closeAccountTab").style.display="none";
+        if(document.getElementById("language-menu").style.display=="none") {
+            document.getElementById("language-menu").style.display="";
+            document.getElementById("closeLanguageTab").style.display="";
+            var trigger = jQuery("#language-trigger");
+            var menu = jQuery("#language-menu");
+            var left = trigger.offset().left + trigger.width() / 2 - menu.width() / 2
+            menu.offset({left:left,top:50});
+            document.getElementById("language-trigger").setAttribute("class", "trigger-on");
+        } else {
+            document.getElementById("language-menu").style.display="none";
+            document.getElementById("closeLanguageTab").style.display="none";
+            document.getElementById("language-trigger").setAttribute("class", "trigger-off");
+        }
+    }
 </script>
 
 <div id="admin-banner-logo-div">
@@ -540,6 +574,13 @@ dojo.require("dojo.cookie");
 	    <% } else { %>
 	        <a href="<%=CTX_PATH%>/portal<%=PortalUtil.getAuthorizedPath(request)%>/logout_as?referer=<%=CTX_PATH%>"><span class="plusIcon"></span><%= LanguageUtil.get(pageContext, "logout-as") %> <%=user.getFullName()%></a>
 	    <% } %>
+
+        <% if (request.getSession().getAttribute(com.dotcms.repackage.org.apache.struts.Globals.LOCALE_KEY) == null) { %>
+            <a href="#" id="language-trigger" onclick="toggleLanguage();" class="trigger-off"><%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-Language-en_US") %><i class="fa fa-angle-down"></i></a>
+        <% } else { %>
+            <a href="#" id="language-trigger" onclick="toggleLanguage();" class="trigger-off"><%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-Language-" + ((Locale)request.getSession().getAttribute(com.dotcms.repackage.org.apache.struts.Globals.LOCALE_KEY)).getLanguage() + "_" + ((Locale)request.getSession().getAttribute(com.dotcms.repackage.org.apache.struts.Globals.LOCALE_KEY)).getCountry()) %><i class="fa fa-angle-down"></i></a>
+        <% } %>
+
 	</div>
 <% } %>
 
@@ -562,7 +603,20 @@ dojo.require("dojo.cookie");
     </ul>
 </div>
 
+<div id="language-menu" class="popup-flyout" style="display:none;">
+    <div class="handle icon icon-popup-menu-handle"></div>
+    <ul>
+        <li>
+            <a href="javascript:switchLanguage('en_US')"><%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-Language-en_US") %></a>
+        </li>
+        <li>
+            <a href="javascript:switchLanguage('zh_CN')"><%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-Language-zh_CN") %></a>
+        </li>
+    </ul>
+</div>
+
 <div id="closeAccountTab" class="closeTab" onClick="toggleAccount();" style="display:none;"></div>
+<div id="closeLanguageTab" class="closeTab" onClick="toggleLanguage();" style="display:none;"></div>
 
 <!-- End User Info Drop Down -->
 
