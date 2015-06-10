@@ -49,3 +49,5 @@ dotCMS/WEB-INF/lib/plugin-*.jar
 starter.zip
 .ant-targets-build.xml
 .gradle/
+
+src/com/liferay/portal/util/build.properties
