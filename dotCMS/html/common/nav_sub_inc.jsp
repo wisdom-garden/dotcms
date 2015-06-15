@@ -494,7 +494,7 @@ dojo.require("dojo.cookie");
             if(versionInfo.showUpdate){
                  //var animArgs = {node: 'autoUpdaterLink',duration: 1000, delay: 50};
                  //dojo.fadeIn(animArgs).play();
-                 dojo.style("autoUpdaterLink", "display", "inline-block");
+                 //dojo.style("autoUpdaterLink", "display", "inline-block");
             }
         }
 
