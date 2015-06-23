@@ -98,6 +98,52 @@
         <filter-name>UrlRewriteFilter</filter-name>
         <filter-class>com.dotmarketing.filters.DotUrlRewriteFilter</filter-class>
     </filter>
+
+	<filter>
+		<filter-name>CasAuthenticationFilter</filter-name>
+		<filter-class>org.jasig.cas.client.authentication.AuthenticationFilter</filter-class>
+		<init-param>
+			<param-name>casServerLoginUrl</param-name>
+			<param-value>http://localhost:8080/cas/login</param-value>
+		</init-param>
+		<init-param>
+			<param-name>serverName</param-name>
+			<param-value>http://localhost:8089</param-value>
+		</init-param>
+	</filter>
+	<filter>
+		<filter-name>CasTicketValidationFilter</filter-name>
+		<filter-class>org.jasig.cas.client.validation.Cas10TicketValidationFilter</filter-class>
+		<init-param>
+			<param-name>casServerUrlPrefix</param-name>
+			<param-value>http://localhost:8080/cas</param-value>
+		</init-param>
+		<init-param>
+			<param-name>serverName</param-name>
+			<param-value>http://localhost:8089</param-value>
+		</init-param>
+	</filter>
+	<filter>
+		<filter-name>CasFrontendLoginFilter</filter-name>
+		<filter-class>com.dotmarketing.filters.cas.CasFrontendLoginFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>CasBackendLoginFilter</filter-name>
+		<filter-class>com.dotmarketing.filters.cas.CasBackendLoginFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>CasLogoutFilter</filter-name>
+		<filter-class>com.dotmarketing.filters.cas.CasLogoutFilter</filter-class>
+		<init-param>
+			<param-name>casServerLogoutUrl</param-name>
+			<param-value>http://localhost:8080/cas/logout</param-value>
+		</init-param>
+		<init-param>
+			<param-name>serverName</param-name>
+			<param-value>http://localhost:8089</param-value>
+		</init-param>
+	</filter>
+
 	<!--END DOTMARKETING FILTERS-->
 	<!-- Don't ever delete the following comment tags, it will break the plugin system -->
 	<!-- BEGIN FILTERS -->
@@ -117,6 +163,37 @@
     <url-pattern>*.html</url-pattern>
   </filter-mapping>
   -->
+
+	<filter-mapping>
+		<filter-name>CasTicketValidationFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>CasAuthenticationFilter</filter-name>
+		<url-pattern>/dotCMS/login</url-pattern>
+		<url-pattern>/application/login/login.html</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>CasFrontendLoginFilter</filter-name>
+		<url-pattern>/dotCMS/login</url-pattern>
+		<url-pattern>/application/login/login.html</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>CasAuthenticationFilter</filter-name>
+		<url-pattern>/html/portal/login.jsp</url-pattern>
+		<url-pattern>/c/portal_public/login</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>CasBackendLoginFilter</filter-name>
+		<url-pattern>/html/portal/login.jsp</url-pattern>
+		<url-pattern>/c/portal_public/login</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>CasLogoutFilter</filter-name>
+		<url-pattern>/c/portal/logout</url-pattern>
+		<url-pattern>/dotCMS/logout</url-pattern>
+	</filter-mapping>
+
   <filter-mapping>
 		<filter-name>CharsetEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
