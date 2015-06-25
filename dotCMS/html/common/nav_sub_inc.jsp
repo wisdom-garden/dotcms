@@ -610,7 +610,7 @@ dojo.require("dojo.cookie");
             <a href="javascript:switchLanguage('en_US')"><%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-Language-en_US") %></a>
         </li>
         <li>
-            <a href="javascript:switchLanguage('zh_CN')"><%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-Language-zh_CN") %></a>
+            <a href="javascript:switchLanguage('zh_MO')"><%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-Language-zh_MO") %></a>
         </li>
     </ul>
 </div>
