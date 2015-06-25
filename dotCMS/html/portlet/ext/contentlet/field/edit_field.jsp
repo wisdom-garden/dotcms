@@ -177,7 +177,7 @@
         	<label for="toggleEditor"><%= LanguageUtil.get(pageContext, "Toggle-Editor") %></label>
         </div>
         <br /> <br />
-        <div style="float: left; position: absolute; z-index: 10;"><%= UtilMethods.escapeSingleQuotes(LanguageUtil.get(pageContext, "Language-Variables")) %>: <input
+        <div style="float: left; position: absolute; z-index: 10;display:none;"><%= UtilMethods.escapeSingleQuotes(LanguageUtil.get(pageContext, "Language-Variables")) %>: <input
             type="text" id="glossary_term_<%= field.getVelocityVarName() %>"
             name="glossary_term_<%= field.getVelocityVarName() %>"
             class="form-text"
@@ -248,7 +248,7 @@
             id="<%=field.getVelocityVarName()%>" style="width:100%; height:450px;font-family:monospace;clear:both;"><%=UtilMethods.htmlifyString(textValue)%>
 		</textarea>
 
-   		<table style="margin:10px 5px 20px 5px;">
+   		<table style="margin:10px 5px 20px 5px;display:none;">
             <tr>
 				<td class="WYSIWYGControls">
 	                <select  autocomplete="false" dojoType="dijit.form.Select" id="<%=field.getVelocityVarName()%>_toggler" onChange="enableDisableWysiwygCodeOrPlain('<%=field.getVelocityVarName()%>')">
