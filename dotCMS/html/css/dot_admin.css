@@ -1,19 +1,65 @@
 /* NAV SUB STYLES 2.0 */
-#admin-banner-logo-div{position:absolute;top:0;left:0;height:50px;width:240px;line-height: 50px;background: url(/html/images/skin/menu-background.png) no-repeat 0 0;font: 20px HiraginoSansGB W3, sans-serif;}
-#admin-banner-logo-div img{margin-left: 12px;vertical-align: middle;line-height: 50px;}
-#admin-banner-logo-div span{margin-left: 34px;vertical-align: middle;color: white;line-height: 50px;}
+#admin-banner-logo-div{position:absolute;top:0;left:0;height:50px;width:360px;line-height: 50px;background: url(/html/images/skin/menu-background.png) no-repeat 0 0;font: 20px HiraginoSansGB W3, sans-serif;}
+#admin-banner-logo-div a{display: inline-block;width: 50px;height: 50px;}
+#admin-banner-logo-div a:hover{background-color:#596B95;}
+#admin-banner-logo-div img{margin: 12px;vertical-align: middle;line-height: 50px;}
+#admin-banner-logo-div span{margin-left: 22px;vertical-align: middle;color: white;line-height: 50px; font-weight: bold;}
 
 #admin-site-tools-div {position:absolute; z-index:9999; top:0px;right:30px;font-size: 13px;color:#ddd; line-height: 50px}
 #admin-site-tools-div a{color:#fff;text-decoration:none;margin-right:18px;vertical-align: middle;}
 #admin-site-tools-div a:hover{}
 #admin-site-tools-div i.fa-angle-down{margin-bottom: 3px;  margin-left: 2px;}
 
+#uniformMenuTab{z-index:7000; position:absolute;top:50px;left:0;right:0;bottom:0;padding-top:75px;padding-left:100px;background-color:#f9f9f9;}
+.uniform-menu {
+	margin:0;
+	padding: 0;
+	list-style: none;
+}
+
+.uniform-menu li {
+	display: inline-block;
+	margin-right: 36px;
+	text-align: center;
+	color: rgb(90,90,90);
+	font: 14px HiraginoSansGB W6, sans-serif;
+}
+
+.uniform-menu li a{
+	display: block;
+	width: 150px;
+	height: 150px;
+	border-radius: 10px;
+}
+
+.uniform-menu li a:hover{
+	 box-shadow: rgb(226, 226, 226) 2px 2px 2px 3px;
+}
+
+.uniform-menu li a + div{
+	margin-top: 10px;
+}
+
+.uniform-menu .tronclass a{
+	background-image: url(/html/images/tronclass.png);
+}
+
+.uniform-menu .portal a{
+	background-image: url(/html/images/portal.png);
+}
+
+.uniform-menu .personal-info a{
+	background-image: url(/html/images/personal-info.png);
+}
+
+.uniform-menu .site-management a{
+	background-image: url(/html/images/site-management.png);
+}
+
 .closeTab{z-index:8000; position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255, 255, 255, 0.1);}
 
 .bannerBG{background:url(/html/images/skin/skin-sprite.png) repeat-x 0 0; height:146px; overflow:hidden; position:absolute; top:0; left:0;width:100%;z-index:-1;}
 .tailerBody{font-family:Andale Mono, monospace;font-size:9pt;white-space: nowrap; }
-
-
 
 .popup-flyout{position:absolute;top:50px;font-size: 85%;border:1px solid #d0d0d0;background:#fff;z-index:9998;-moz-box-shadow:0px 2px 10px rgba(0, 0, 0, 0.2);-webkit-box-shadow:0px 2px 10px rgba(0, 0, 0, 0.2);box-shadow:0px 2px 10px rgba(0, 0, 0, 0.2);}
 .popup-flyout ul{margin:10px 0 10px 0;}

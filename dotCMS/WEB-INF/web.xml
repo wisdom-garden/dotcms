@@ -10,6 +10,14 @@
 		<param-name>company_id</param-name>
 		<param-value>dotcms.org</param-value>
 	</context-param>
+	<context-param>
+		<param-name>tronclass_url</param-name>
+		<param-value>http://staging.tronclass.com/user/dashboard</param-value>
+	</context-param>
+	<context-param>
+		<param-name>personal_info_url</param-name>
+		<param-value>http://staging.tronclass.com/user/dashboard</param-value>
+	</context-param>
 	<!-- Don't ever delete the following comment tags, it will break the plugin system -->
 	<!-- BEGIN CONTEXT-PARAMS -->
     <!-- END CONTEXT-PARAMS -->

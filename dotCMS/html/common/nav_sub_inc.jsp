@@ -35,9 +35,6 @@
                 }
 
             }
-
-
-
         } else {
             boolean isPerpetual = LicenseUtil.isPerpetual();
             boolean isTrial = LicenseUtil.getLicenseType().equals("trial");
@@ -180,21 +177,11 @@
         }
     }
 
-
-
-
-
-        boolean emailAuth = false;
-        if(company.getAuthType().equals(com.liferay.portal.model.Company.AUTH_TYPE_EA)) {
-            emailAuth = true;
-        }
-
+    boolean emailAuth = false;
+    if(company.getAuthType().equals(com.liferay.portal.model.Company.AUTH_TYPE_EA)) {
+        emailAuth = true;
+    }
 %>
-
-
-
-
-
 
 <%@page import="java.util.Date"%>
 <%@page import="java.util.Calendar"%>
@@ -550,10 +537,23 @@ dojo.require("dojo.cookie");
             document.getElementById("language-trigger").setAttribute("class", "trigger-off");
         }
     }
+
+    function showUniformMenu(){
+        if (window.location.search){
+            var searchPattern = /showMenu=(true|false)/
+            if (window.location.search.match(searchPattern)){
+                window.location.search = window.location.search.replace(searchPattern,"showMenu=true")
+            }else{
+                window.location.search += "&showMenu=true"
+            }
+        }else{
+            window.location.search = "?showMenu=true"
+        }
+    }
 </script>
 
 <div id="admin-banner-logo-div">
-    <img src="/html/images/skin/menu.png"/>
+    <a href="javascript: showUniformMenu();"><img src="/html/images/skin/menu.png"/></a>
     <span><%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-Title") %></span>
 </div>
 
@@ -614,6 +614,29 @@ dojo.require("dojo.cookie");
         </li>
     </ul>
 </div>
+
+<% if ("true".equalsIgnoreCase(request.getParameter("showMenu"))) { %>
+    <div id="uniformMenuTab">
+        <ul class="uniform-menu">
+            <li class="tronclass">
+                <a href="<%= request.getServletContext().getInitParameter("tronclass_url")%>"></a>
+                <div><%= LanguageUtil.get(pageContext, "UniformMenu-TronClass") %></div>
+            </li>
+            <li class="portal">
+                <a href="/"></a>
+                <div><%= LanguageUtil.get(pageContext, "UniformMenu-Portal") %></div>
+            </li>
+            <li class="personal-info">
+                <a href="<%= request.getServletContext().getInitParameter("personal_info_url")%>"></a>
+                <div><%= LanguageUtil.get(pageContext, "UniformMenu-Personal-Info") %></div>
+            </li>
+            <li class="site-management">
+                <a href="/c/portal/layout"></a>
+                <div><%= LanguageUtil.get(pageContext, "UniformMenu-Site-Management") %></div>
+            </li>
+        </ul>
+    </div>
+<% } %>
 
 <div id="closeAccountTab" class="closeTab" onClick="toggleAccount();" style="display:none;"></div>
 <div id="closeLanguageTab" class="closeTab" onClick="toggleLanguage();" style="display:none;"></div>
