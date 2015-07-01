@@ -168,7 +168,7 @@
  %>
     <br />
     <div style="padding-right:10px;width:475px;float:left;">
-    	<div style="float: left;padding-top: 10px; padding-left: 2px;">
+    	<div style="float: left;padding-top: 10px; padding-left: 2px; display:none;">
  		<%if(toggleOn){ %>
     		<input type="checkbox" dojoType="dijit.form.CheckBox" name="toggleEditor_<%=field.getVelocityVarName()%>" value="true" checked="true"  id="toggleEditor_<%=field.getVelocityVarName()%>"  onclick="aceText('<%=field.getVelocityVarName()%>','<%=keyValue%>','<%=isWidget%>');" />
     		<%}else{ %>
@@ -176,8 +176,7 @@
         <%} %>
         	<label for="toggleEditor"><%= LanguageUtil.get(pageContext, "Toggle-Editor") %></label>
         </div>
-        <br /> <br />
-        <div style="float: left; position: absolute; z-index: 10;display:none;"><%= UtilMethods.escapeSingleQuotes(LanguageUtil.get(pageContext, "Language-Variables")) %>: <input
+        <div style="float: left; position: absolute; z-index: 10; display:none;"><%= UtilMethods.escapeSingleQuotes(LanguageUtil.get(pageContext, "Language-Variables")) %>: <input
             type="text" id="glossary_term_<%= field.getVelocityVarName() %>"
             name="glossary_term_<%= field.getVelocityVarName() %>"
             class="form-text"
