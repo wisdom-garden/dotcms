@@ -179,12 +179,12 @@
 	<filter-mapping>
 		<filter-name>CasAuthenticationFilter</filter-name>
 		<url-pattern>/dotCMS/login</url-pattern>
-		<url-pattern>/application/login/login.html</url-pattern>
+		<url-pattern>/application/page/login</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>CasFrontendLoginFilter</filter-name>
 		<url-pattern>/dotCMS/login</url-pattern>
-		<url-pattern>/application/login/login.html</url-pattern>
+		<url-pattern>/application/page/login</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>CasAuthenticationFilter</filter-name>
