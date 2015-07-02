@@ -111,7 +111,7 @@
 	<%@page import="com.dotmarketing.cache.LiveCache"%>
 	<html>
 		<head>
-			<link rel="shortcut icon" href="http://<%=defaultHost.getHostname()%>/home/favicon.ico"" type="image/x-icon">
+			<link rel="shortcut icon" href="/application/images/favicon.ico"" type="image/x-icon">
 		    <script>
 		        function showError(){
 		            var ele = document.getElementById("error");

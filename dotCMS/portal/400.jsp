@@ -107,7 +107,7 @@
 
 <html>
 <head>
-	<link rel="shortcut icon" href="http://<%=defaultHost.getHostname()%>/home/favicon.ico"" type="image/x-icon">
+	<link rel="shortcut icon" href="/application/images/favicon.ico"" type="image/x-icon">
 	<title><%= LanguageUtil.get(pageContext,"400-page-title") %></title>
 
 	<style type="text/css">
