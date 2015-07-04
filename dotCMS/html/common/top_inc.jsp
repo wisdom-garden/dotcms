@@ -159,7 +159,7 @@ THIS FILE AND ITS INCLUDES
 <%if(UtilMethods.isSet(request.getParameter("popup")) || UtilMethods.isSet(request.getAttribute("popup")) || UtilMethods.isSet(request.getParameter("in_frame"))){ %>
 	<body class="dmundra" style="background:white url()">
 <%}else{ %>
-	<body class="dmundra" style="visibility:hidden">
+	<body class="dmundra">
 		<div class="imageBG"></div>
 		<div class="bannerBG"></div>
 <%} %>

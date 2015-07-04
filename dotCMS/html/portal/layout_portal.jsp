@@ -40,7 +40,14 @@
                         <%@ include file="/html/common/nav_sub_inc.jsp" %>
                         <%@ include file="/html/common/messages_inc.jsp" %>
                 </div>
-                
+
+                <% if ("6813f1f9-b250-4e0a-a40c-706133e92510".equalsIgnoreCase(request.getParameter("p_l_id"))) { %>
+                        <div id="noPermiissionTab">
+                                <div>
+                                        <%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-No-Permission") %>
+                                </div>
+                        </div
+                <%} else {%>
                 <div id="bd">
                         <div id="dotAjaxMainHangerDiv">
                                 <div id="dotAjaxMainDiv" dojoType="dojox.layout.ContentPane" style="overflow: visible;">
@@ -48,7 +55,7 @@
                                 </div>
                         </div>
                 </div>
-                
+                <% } %>
                 <div>
                         <%@ include file="/html/common/bottom_portal_inc.jsp" %>
                 </div>

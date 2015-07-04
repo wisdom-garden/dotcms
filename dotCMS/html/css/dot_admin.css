@@ -10,7 +10,8 @@
 #admin-site-tools-div a:hover{}
 #admin-site-tools-div i.fa-angle-down{margin-bottom: 3px;  margin-left: 2px;}
 
-#uniformMenuTab{z-index:7000; position:absolute;top:50px;left:0;right:0;bottom:0;padding-top:75px;padding-left:100px;background-color:#f9f9f9;}
+#noPermiissionTab{z-index:6000; position:absolute;top:50px;left:0;right:0;bottom:0;padding-top:75px;background-color:#f9f9f9;text-align:center;font: 20px HiraginoSansGB W3, sans-serif;}
+#uniformMenuTab{z-index:7000; position:absolute;top:50px;left:0;right:0;bottom:0;padding-top:75px;padding-left:100px;background-color:#f9f9f9; }
 .uniform-menu {
 	margin:0;
 	padding: 0;
