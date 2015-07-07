@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/html/portlet/ext/browser/init.jsp" %>
 <%@ include file="/html/portlet/ext/remotepublish/init.jsp" %>
 <%@page import="com.dotmarketing.util.UtilMethods"%>
