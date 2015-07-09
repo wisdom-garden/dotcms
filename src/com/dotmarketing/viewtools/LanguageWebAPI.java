@@ -1,6 +1,7 @@
 package com.dotmarketing.viewtools;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -258,18 +259,19 @@ public class LanguageWebAPI implements ViewTool {
 	}
 
 	public String getFromUserLanguage(String key) {
-		User user1=null;
-		try {
-			user1 = com.liferay.portal.util.PortalUtil.getUser(this.request);
-		} catch (PortalException e) {
-			Logger.error(this, e.toString());
-			
-		} catch (SystemException e) {
-			Logger.error(this, e.toString());
-		}
+//		User user1=null;
+//		try {
+//			user1 = com.liferay.portal.util.PortalUtil.getUser(this.request);
+//		} catch (PortalException e) {
+//			Logger.error(this, e.toString());
+//
+//		} catch (SystemException e) {
+//			Logger.error(this, e.toString());
+//		}
+		Locale locale = (Locale) request.getSession().getAttribute(com.dotcms.repackage.org.apache.struts.Globals.LOCALE_KEY);
 		String message=null;
 		try {
-			message=LanguageUtil.get(user1, key);
+			message=LanguageUtil.get(locale, key);
 		} catch (LanguageException e) {
 			Logger.error(this, e.toString());
 		}

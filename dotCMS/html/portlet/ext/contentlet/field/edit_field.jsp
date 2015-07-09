@@ -85,8 +85,11 @@
 		            ! "constant".equals(field.getFieldType())
 
 		    ) {
+                String key = "field." + field.getVelocityVarName();
+                String displayName = LanguageUtil.get(locale, key);
+                displayName = key.equals(displayName) ? field.getFieldName() : displayName;
 		%>
-     		<%=field.getFieldName()%>:</span>
+     		<%=displayName%>:</span>
 		<% } %>
 	</div>
 
