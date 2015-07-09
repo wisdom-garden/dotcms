@@ -1653,7 +1653,7 @@
 
         function getHeader (field) {
                 var fieldContentlet = field["fieldVelocityVarName"];
-                var fieldName = field["fieldName"];
+                var fieldName = field["displayName"];
                 var stVar = field["fieldStructureVarName"];
                 if(fieldContentlet == '__title__'){
                 	return "<a href=\"javascript: doSearch (1, 'title')\">" + fieldName + "</a>";

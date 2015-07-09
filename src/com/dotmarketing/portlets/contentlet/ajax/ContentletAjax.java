@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -368,7 +369,7 @@ public class ContentletAjax {
 	 * @throws DotDataException
 	 * @throws DotStateException
 	 */
-	public List searchContentlet(String structureInode, List<String> fields, List<String> categories, boolean showDeleted, boolean filterSystemHost, int page, int perPage, String orderBy) throws DotStateException, DotDataException, DotSecurityException {
+	public List searchContentlet(String structureInode, List<String> fields, List<String> categories, boolean showDeleted, boolean filterSystemHost, int page, int perPage, String orderBy) throws LanguageException, DotStateException, DotDataException, DotSecurityException {
 
 		PermissionAPI perAPI = APILocator.getPermissionAPI();
 		HttpSession sess = WebContextFactory.get().getSession();
@@ -387,11 +388,11 @@ public class ContentletAjax {
 		return searchContentletsByUser(structureInode, fields, categories, showDeleted, filterSystemHost, false, false, page, orderBy, perPage, currentUser, sess, null, null);
 	}
 
-	public List searchContentlets(String structureInode, List<String> fields, List<String> categories, boolean showDeleted, boolean filterSystemHost, int page, String orderBy, String modDateFrom, String modDateTo) throws DotStateException, DotDataException, DotSecurityException {
+	public List searchContentlets(String structureInode, List<String> fields, List<String> categories, boolean showDeleted, boolean filterSystemHost, int page, String orderBy, String modDateFrom, String modDateTo) throws LanguageException, DotStateException, DotDataException, DotSecurityException {
 	    return searchContentlets(structureInode, fields, categories, showDeleted, filterSystemHost, page, orderBy, modDateFrom, modDateTo, true);
 	}
 
-	public List searchContentlets(String structureInode, List<String> fields, List<String> categories, boolean showDeleted, boolean filterSystemHost, int page, String orderBy, String modDateFrom, String modDateTo, boolean saveLastSearch) throws DotStateException, DotDataException, DotSecurityException {
+	public List searchContentlets(String structureInode, List<String> fields, List<String> categories, boolean showDeleted, boolean filterSystemHost, int page, String orderBy, String modDateFrom, String modDateTo, boolean saveLastSearch) throws LanguageException, DotStateException, DotDataException, DotSecurityException {
 	    HttpSession sess = null;
         if(saveLastSearch)
             sess = WebContextFactory.get().getSession();
@@ -407,18 +408,18 @@ public class ContentletAjax {
 			Logger.error(this, "Error trying to obtain the current liferay user from the request.", e);
 		}
 
-		return searchContentletsByUser(structureInode, fields, categories, showDeleted, filterSystemHost, false, false, page, orderBy, 0,currentUser, sess, modDateFrom, modDateTo);
+		return searchContentletsByUser(structureInode, fields, categories, showDeleted, filterSystemHost, false, false, page, orderBy, 0, currentUser, sess, modDateFrom, modDateTo);
 	}
 
 	public List searchContentlets(String structureInode, List<String> fields, List<String> categories, boolean showDeleted,
 	        boolean filterSystemHost,  boolean filterUnpublish, boolean filterLocked, int page, String orderBy, String modDateFrom,
-	        String modDateTo) throws DotStateException, DotDataException, DotSecurityException {
-	    return searchContentlets(structureInode,fields,categories,showDeleted,filterSystemHost,filterUnpublish,filterLocked,page,0,orderBy,modDateFrom,modDateTo);
+	        String modDateTo) throws LanguageException, DotStateException, DotDataException, DotSecurityException {
+	    return searchContentlets(structureInode, fields, categories, showDeleted, filterSystemHost, filterUnpublish, filterLocked, page, 0, orderBy, modDateFrom, modDateTo);
 	}
 
 	public List searchContentlets(String structureInode, List<String> fields, List<String> categories, boolean showDeleted,
 	        boolean filterSystemHost,  boolean filterUnpublish, boolean filterLocked, int page, int perPage,String orderBy, String modDateFrom,
-	        String modDateTo) throws DotStateException, DotDataException, DotSecurityException {
+	        String modDateTo) throws LanguageException, DotStateException, DotDataException, DotSecurityException {
 
 		PermissionAPI perAPI = APILocator.getPermissionAPI();
 		HttpSession sess = WebContextFactory.get().getSession();
@@ -435,7 +436,7 @@ public class ContentletAjax {
 		}
 
 		return searchContentletsByUser(structureInode, fields, categories, showDeleted, filterSystemHost, filterUnpublish, filterLocked,
-		        page, orderBy, perPage,currentUser, sess, modDateFrom, modDateTo);
+				page, orderBy, perPage, currentUser, sess, modDateFrom, modDateTo);
 	}
 
 	/**
@@ -505,11 +506,7 @@ public class ContentletAjax {
 	 * @throws DotStateException
 	 */
 	@SuppressWarnings("unchecked")
-	public List searchContentletsByUser(String structureInode, List<String> fields, List<String> categories, boolean showDeleted, boolean filterSystemHost, boolean filterUnpublish, boolean filterLocked, int page, String orderBy,int perPage, User currentUser, HttpSession sess,String  modDateFrom, String modDateTo) throws DotStateException, DotDataException, DotSecurityException {
-
-
-
-
+	public List searchContentletsByUser(String structureInode, List<String> fields, List<String> categories, boolean showDeleted, boolean filterSystemHost, boolean filterUnpublish, boolean filterLocked, int page, String orderBy,int perPage, User currentUser, HttpSession sess,String  modDateFrom, String modDateTo) throws LanguageException, DotStateException, DotDataException, DotSecurityException {
 		if(perPage < 1){
 			perPage = Config.getIntProperty("PER_PAGE");
 		}
@@ -785,10 +782,17 @@ public class ContentletAjax {
 		lastSearchMap.put("categories", categories);
 
 		//Adding the headers as the second row of the results
+        Locale locale = (Locale) sess.getAttribute(com.dotcms.repackage.org.apache.struts.Globals.LOCALE_KEY);
 		for (Field f : targetFields) {
 		    if (f.isListed()) {
 		        fieldsMapping.put(f.getVelocityVarName(), f);
-		        headers.add(f.getMap());
+				Map<String, Object> fieldMap = f.getMap();
+				String key = "field." + f.getVelocityVarName();
+				String value = LanguageUtil.get(locale, key);
+				value = key.equals(value)?f.getFieldName():value;
+				fieldMap.put("displayName", value);
+
+				headers.add(fieldMap);
 		    }
 		}
 
@@ -862,10 +866,18 @@ public class ContentletAjax {
 			Map<String, String> fieldMap = new HashMap<String, String> ();
 			fieldMap.put("fieldVelocityVarName", "__title__");
 			fieldMap.put("fieldName", "Title");
+            String key = "field.title";
+            String value = LanguageUtil.get(locale, key);
+            value = key.equals(value) ? fieldMap.get("fieldName") : value;
+            fieldMap.put("displayName", value);
 			headers.add(fieldMap);
 			fieldMap = new HashMap<String, String> ();
 			fieldMap.put("fieldVelocityVarName", "__type__");
 			fieldMap.put("fieldName", "Type");
+            key = "field.type";
+            value = LanguageUtil.get(locale, key);
+            value = key.equals(value) ? fieldMap.get("fieldName") : value;
+            fieldMap.put("displayName", value);
 			headers.add(fieldMap);
 		}
 		results.add(headers);
