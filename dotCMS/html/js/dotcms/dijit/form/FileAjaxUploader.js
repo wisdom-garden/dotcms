@@ -64,11 +64,11 @@ dojo.declare("dotcms.dijit.form.FileAjaxUploader", [dijit._Widget, dijit._Templa
 	fileInfoTemplate: '<div>\
 		<table class="listingTable">\
 			<tr class="alternate_1">\
-	    		<td><b>File Name</b></td>\
+	    		<td><b>{fileNameLabel}</b></td>\
 				<td>{fileName}</td>\
 			</tr>\
 			<tr class="alternate_2">\
-	    		<td><b>File Link</b></td>\
+	    		<td><b>{fileLinkLabel}</b></td>\
 				<td><a target="_blank" href="{path}">{path}</a></td>\
 			</tr>\
 		</table>\
@@ -170,8 +170,11 @@ dojo.declare("dotcms.dijit.form.FileAjaxUploader", [dijit._Widget, dijit._Templa
 	
 	_info: function () {
 		console.log(this.fileNameDisplayField);
+		var elementInfoButton = dojo.query(".file-upload-info-button", this.domNode);
 		var fileInfo = {};
 		fileInfo['fileName'] = this.fileName;
+		fileInfo['fileNameLabel'] = elementInfoButton.attr("data-filename");
+		fileInfo['fileLinkLabel'] = elementInfoButton.attr("data-filelink");
 		fileInfo['path'] = location.protocol +"//"+ location.host +
 		'/contentAsset/raw-data/' + this.inode + '/' + this.id + "?byInode=true";
 		var html = dojo.replace(this.fileInfoTemplate, fileInfo);

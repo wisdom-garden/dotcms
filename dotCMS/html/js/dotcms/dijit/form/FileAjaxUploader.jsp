@@ -18,7 +18,7 @@
 			<%= LanguageUtil.get(pageContext, "remove")%>
 		</button>
 	</div>
-	<div dojoAttachPoint="fileUploadInfoButton" style="display: none;">
+	<div class="file-upload-info-button" dojoAttachPoint="fileUploadInfoButton" style="display: none;" data-filename="<%= LanguageUtil.get(pageContext, "file.upload.info.button.filename")%>" data-filelink="<%= LanguageUtil.get(pageContext, "file.upload.info.button.filelink")%>">
 		<button dojoType="dijit.form.Button" dojoAttachEvent="onClick:_info" iconClass="infoIcon">
 			<%= LanguageUtil.get(pageContext, "info")%>
 		</button>
