@@ -205,7 +205,7 @@
         identifier: "name",
         label: "label",
         items: [
-				<%if(request.getAttribute("SHOW_FORMS_ONLY") == null){%>
+				<%if(false){%>
                 {
                     name: "_all",
                     label: "<%= UtilMethods.escapeSingleQuotes(LanguageUtil.get(pageContext, "All" )) %>",

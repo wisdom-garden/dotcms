@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import com.dotmarketing.business.PermissionAPI;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
@@ -92,8 +92,8 @@ public class JSONCategoriesServlet extends HttpServlet implements Servlet {
 				}
 			}
 
-			PaginatedCategories pagCategories = topLevelCats?catAPI.findTopLevelCategories(user, false, start, count, q, sort):
-					catAPI.findChildren(user, inode, false, start, count, q, sort);
+			PaginatedCategories pagCategories = topLevelCats?catAPI.findTopLevelCategories(user, false,PermissionAPI.PERMISSION_WRITE, start, count, q, sort):
+					catAPI.findChildren(user, inode, false,PermissionAPI.PERMISSION_WRITE, start, count, q, sort);
 
 			List<Map<String,Object>> items = new ArrayList<Map<String,Object>>();
 			List<Category> categories = pagCategories.getCategories();

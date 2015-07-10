@@ -141,14 +141,17 @@ public interface CategoryAPI {
 	 * @throws DotDataException
 	 */
 	public PaginatedCategories findTopLevelCategories(User user, boolean respectFrontendRoles, int start, int count, String filter, String sort) throws DotDataException, DotSecurityException;
-	
+
+	public PaginatedCategories findTopLevelCategories(User user, boolean respectFrontendRoles,int permissionType, int start, int count, String filter, String sort) throws DotDataException, DotSecurityException;
 	/**
 	 * Retrieves a Paginated list of all the children of the Category with the given inode
 	 * @return
 	 * @throws DotDataException
 	 */
 	public PaginatedCategories findChildren(User user, String inode, boolean respectFrontendRoles, int start, int count, String filter, String sort) throws DotDataException, DotSecurityException;
-	
+
+	public PaginatedCategories findChildren(User user, String inode, boolean respectFrontendRoles, int permissionType, int start, int count, String filter, String sort) throws DotDataException, DotSecurityException;
+
 	/**
 	 * Deletes all the children of a given parent inode
 	 * @return

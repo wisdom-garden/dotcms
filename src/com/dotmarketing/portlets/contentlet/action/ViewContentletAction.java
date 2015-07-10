@@ -103,16 +103,14 @@ public class ViewContentletAction extends DotPortletAction {
 					req.setAttribute(WebKeys.Structure.STRUCTURES, structures);
 					req.setAttribute("SHOW_FORMS_ONLY", true);
 				}else{
-					List<Structure> structures = StructureFactory.getNoSystemStructuresWithReadPermissions(user, false);
+					List<Structure> structures = StructureFactory.getStructuresWithWritePermissions(user, false);
 					req.setAttribute(WebKeys.Structure.STRUCTURES, structures);
 				}
 
 			}else{
-				List<Structure> structures = StructureFactory.getNoSystemStructuresWithReadPermissions(user, false);
+				List<Structure> structures = StructureFactory.getStructuresWithWritePermissions(user, false);
 				req.setAttribute(WebKeys.Structure.STRUCTURES, structures);
 			}
-
-
 		}
 
 		if(req.getParameter("selected_lang") != null){
@@ -122,6 +120,4 @@ public class ViewContentletAction extends DotPortletAction {
 		req.setAttribute(WebKeys.LANGUAGES, languages);
 
 	}
-
-
 }
