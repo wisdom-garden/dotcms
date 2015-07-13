@@ -657,57 +657,18 @@ function renderSearchField (field) {
 	%>
 	
 	function userHasReadPermission (contentlet, userId) {
-		var permissions = contentlet["permissions"];
-		var owner = contentlet["owner"];
-		var ownerCanRead = contentlet["ownerCanRead"];
-		var hasPermission = false;
-		if(owner == userId && ownerCanRead.valueOf() == 'true'){
-			return true;
-		}
-		for (var i = 0; i < userRolesIds.length; i++) {
-			var roleId = userRolesIds[i];
-			var re = new RegExp("P" + roleId + "\\.1P");
-			if (permissions.match(re)) {
-				hasPermission = true;
-			}
-		}
-		return hasPermission;
+		var userCanRead = contentlet["userCanRead"];
+		return userCanRead;
 	}
 	
 	function userHasWritePermission (contentlet, userId) {
-		var permissions = contentlet["permissions"];
-		var owner = contentlet["owner"];
-		var ownerCanWrite = contentlet["ownerCanWrite"];
-		var hasPermission = false;
-		if(owner == userId && ownerCanWrite.valueOf() == 'true'){
-			return true;
-		}
-		for (var i = 0; i < userRolesIds.length; i++) {
-			var roleId = userRolesIds[i];
-			var re = new RegExp("P" + roleId + "\\.2P");
-			if (permissions.match(re)) {
-				hasPermission = true;
-			}
-		}
-		return hasPermission;
+		var userCanWrite = contentlet["userCanWrite"];
+		return userCanWrite;
 	}
 	
 	function userHasPublishPermission (contentlet, userId) {
-		var permissions = contentlet["permissions"];
-		var owner = contentlet["owner"];
-		var ownerCanPublish = contentlet["ownerCanPublish"];
-		var hasPermission = false;
-		if(owner == userId && ownerCanPublish.valueOf() == 'true'){
-			return true;
-		}
-		for (var i = 0; i < userRolesIds.length; i++) {
-			var roleId = userRolesIds[i];
-			var re = new RegExp("P" + roleId + "\\.4P");
-			if (permissions.match(re)) {
-				hasPermission = true;
-			}
-		}
-		return hasPermission;
+		var userCanPublish = contentlet["userCanPublish"];
+		return userCanPublish;
 	}
 	
 	function showMatchingResults (num) {

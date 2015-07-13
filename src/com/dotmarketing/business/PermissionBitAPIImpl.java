@@ -303,10 +303,10 @@ public class PermissionBitAPIImpl implements PermissionAPI {
 		
 		// http://jira.dotmarketing.net/browse/DOTCMS-6943
 		// everybody should be able to use file structures
-        if (permissionable instanceof Structure
-                && (permissionType==PERMISSION_WRITE || permissionType==PERMISSION_PUBLISH)
-                && ((Structure)permissionable).getStructureType()==Structure.STRUCTURE_TYPE_FILEASSET)
-            return true;
+//        if (permissionable instanceof Structure
+//                && (permissionType==PERMISSION_WRITE || permissionType==PERMISSION_PUBLISH)
+//                && ((Structure)permissionable).getStructureType()==Structure.STRUCTURE_TYPE_FILEASSET)
+//            return true;
 
 		Role adminRole;
 		Role anonRole;

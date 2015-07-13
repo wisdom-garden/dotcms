@@ -103,11 +103,9 @@
                 }
         }
 
-        if (!InodeUtils.isSet(structureSelected) || !structures.contains(StructureCache.getStructureByInode(structureSelected))) {
-
-                structureSelected = "_all";
-
-        }
+        //if (!InodeUtils.isSet(structureSelected) || !structures.contains(StructureCache.getStructureByInode(structureSelected))) {
+        //        structureSelected = "_all";
+        //}
 
 
         List<Field> fields = new ArrayList<Field>();

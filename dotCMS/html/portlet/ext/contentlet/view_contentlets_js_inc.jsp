@@ -2082,46 +2082,17 @@
                 <%if(APILocator.getRoleAPI().doesUserHaveRole(user, APILocator.getRoleAPI().loadCMSAdminRole())){ %>
                         return true;
                 <%} %>
-
-                var permissions = contentlet["permissions"];
-                var owner = contentlet["owner"];
-                var ownerCanRead = contentlet["ownerCanRead"];
-                var hasPermission = false;
-                if(owner == userId && ownerCanRead.valueOf() == 'true'){
-                        return true;
-                }
-                for (var i = 0; i < userRolesIds.length; i++) {
-                        var roleId = userRolesIds[i];
-                        var re = new RegExp("P" + roleId + "\\.1P");
-                        if (permissions.match(re)) {
-                                hasPermission = true;
-                        }
-                }
-                return hasPermission;
+                var userCanRead = contentlet["userCanRead"];
+                return userCanRead === "true";
         }
 
         function userHasWritePermission (contentlet, userId) {
                 <%if(APILocator.getRoleAPI().doesUserHaveRole(user, APILocator.getRoleAPI().loadCMSAdminRole())){ %>
                         return true;
                 <%} %>
-                var permissions = contentlet["permissions"];
-                var owner = contentlet["owner"];
-                var ownerCanWrite = contentlet["ownerCanWrite"];
-                var hasPermission = false;
-                <%if(APILocator.getRoleAPI().doesUserHaveRole(user, APILocator.getRoleAPI().loadCMSAdminRole())){ %>
-                        return true;
-                <%} %>
-                if(owner == userId && ownerCanWrite.valueOf() == 'true'){
-                        return true;
-                }
-                for (var i = 0; i < userRolesIds.length; i++) {
-                        var roleId = userRolesIds[i];
-                        var re = new RegExp("P" + roleId + "\\.2P");
-                        if (permissions.match(re)) {
-                                hasPermission = true;
-                        }
-                }
-                return hasPermission;
+
+                var userCanWrite = contentlet["userCanWrite"];
+                return userCanWrite === "true";
         }
 
         function userHasPublishPermission (contentlet, userId) {
@@ -2134,21 +2105,8 @@
                         return true;
                 <%} %>
 
-                var permissions = contentlet["permissions"];
-                var owner = contentlet["owner"];
-                var ownerCanPublish = contentlet["ownerCanPublish"];
-                var hasPermission = false;
-                if(owner == userId && ownerCanPublish.valueOf() == 'true'){
-                        return true;
-                }
-                for (var i = 0; i < userRolesIds.length; i++) {
-                        var roleId = userRolesIds[i];
-                        var re = new RegExp("P" + roleId + "\\.4P");
-                        if (permissions.match(re)) {
-                                hasPermission = true;
-                        }
-                }
-                return hasPermission;
+                var userCanPublish = contentlet["userCanPublish"];
+                return userCanPublish === "true";
         }
 
 

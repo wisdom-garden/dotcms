@@ -135,6 +135,8 @@ public interface CategoryAPI {
 	 */
 	public List<Category> findTopLevelCategories(User user, boolean respectFrontendRoles, String filter) throws DotDataException, DotSecurityException;
 
+	public List<Category> findTopLevelCategories(User user, boolean respectFrontendRoles,int permissionType, String filter) throws DotDataException, DotSecurityException;
+
 	/**
 	 *  Retrieves a list of all top level categories in the system filtered by a String that can match the name, key, or variable and delimited by start and count params.
 	 * @return
@@ -166,7 +168,8 @@ public interface CategoryAPI {
 	 */
 	public List<Category> findChildren(User user, String inode, boolean respectFrontendRoles, String filter) throws DotDataException, DotSecurityException;
 
-	
+	public List<Category> findChildren(User user, String inode, boolean respectFrontendRoles,int permissionType, String filter) throws DotDataException, DotSecurityException;
+
 	/**
 	 * Saves categories,
 	 * When saving a new category the parent should be passed to the API

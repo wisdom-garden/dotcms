@@ -98,7 +98,6 @@ public class ContentletAjax {
 
 	private java.text.DateFormat modDateFormat = java.text.DateFormat.getDateTimeInstance(java.text.DateFormat.SHORT,
 			java.text.DateFormat.SHORT);
-
 	private ContentletAPI conAPI = APILocator.getContentletAPI();
 	private ContentletWebAPI contentletWebAPI = WebAPILocator.getContentletWebAPI();
 	private LanguageAPI langAPI = APILocator.getLanguageAPI();
@@ -783,6 +782,7 @@ public class ContentletAjax {
 
 		//Adding the headers as the second row of the results
         Locale locale = (Locale) sess.getAttribute(com.dotcms.repackage.org.apache.struts.Globals.LOCALE_KEY);
+
 		for (Field f : targetFields) {
 		    if (f.isListed()) {
 		        fieldsMapping.put(f.getVelocityVarName(), f);
@@ -887,6 +887,22 @@ public class ContentletAjax {
 
 		List<String> expiredInodes=new ArrayList<String>();
 
+		Boolean hasCategoryField = false;
+		Map<String,Boolean> categoryids =new HashMap<String,Boolean>();
+		for (Field f : targetFields) {
+			if (f.getFieldType().equals(FieldType.CATEGORY.toString())){
+				hasCategoryField=true;
+				List<Category> cates=catAPI.findChildren(currentUser, f.getValues(), false, PermissionAPI.PERMISSION_WRITE, "");
+				for(Category cate:cates){
+					categoryids.put(cate.getInode(),true);
+					List<Category> subCates=catAPI.findChildren(currentUser, cate.getInode(), false, PermissionAPI.PERMISSION_WRITE, "");
+					for(Category subCate:subCates) {
+						categoryids.put(subCate.getInode(),true);
+					}
+				}
+			}
+		}
+
 		//Adding the query results
 		Contentlet con;
 		for (int i = 0; ((i < perPage) && (i < hits.size())); ++i) {
@@ -967,43 +983,99 @@ public class ContentletAjax {
 			} else {
 				user = contentEditor.getFullName();
 			}
-			PermissionAPI permissionAPI = APILocator.getPermissionAPI();
-			List<Permission> permissions = null;
-			try {
-				permissions = permissionAPI.getPermissions(con);
-			} catch (DotDataException e) {
-			}
-			StringBuffer permissionsSt = new StringBuffer();
-			Boolean ownerCanRead = false;
-			Boolean ownerCanWrite = false;
-			Boolean ownerCanPub = false;
-			for (Permission permission : permissions) {
-				String str = "P" + permission.getRoleId() + "." + permission.getPermission() + "P ";
-				if (permissionsSt.toString().indexOf(str) < 0) {
-					permissionsSt.append(str);
-				}
-				try {
-					if(APILocator.getRoleAPI().loadCMSOwnerRole().getId().equals(String.valueOf(permission.getRoleId()))){
-						if(permission.getPermission() == PERMISSION_READ){
-							ownerCanRead = true;
-						}else if(permission.getPermission() == PERMISSION_WRITE){
-							ownerCanRead = true;
-							ownerCanWrite = true;
-						}else if(permission.getPermission() == PERMISSION_PUBLISH){
-							ownerCanRead = true;
-							ownerCanWrite = true;
-							ownerCanPub = true;
-						}
-					}
-				} catch (DotDataException e) {
 
+			PermissionAPI permissionAPI = APILocator.getPermissionAPI();
+			Boolean userCanRead = permissionAPI.doesUserHavePermission(con,PERMISSION_READ,currentUser);
+			Boolean userCanWrite = permissionAPI.doesUserHavePermission(con,PERMISSION_WRITE,currentUser);
+			Boolean userCanPublish = permissionAPI.doesUserHavePermission(con,PERMISSION_PUBLISH,currentUser);
+
+			if (hasCategoryField) {
+				List<Category> conCats = catAPI.getParents(con, currentUser, false);
+				Boolean hasPermission = false;
+				for (Category conCat : conCats) {
+					if (categoryids.containsKey(conCat.getInode())) {
+						hasPermission = true;
+					}
+				}
+				if (!hasPermission) {
+					userCanWrite = false;
+					userCanPublish = false;
 				}
 			}
+
+//			PermissionAPI permissionAPI = APILocator.getPermissionAPI();
+//			List<Permission> permissions = null;
+//			try {
+//				permissions = permissionAPI.getPermissions(con);
+//			} catch (DotDataException e) {
+//			}
+//			StringBuffer permissionsSt = new StringBuffer();
+//			Boolean ownerCanRead = false;
+//			Boolean ownerCanWrite = false;
+//			Boolean ownerCanPub = false;
+//			for (Permission permission : permissions) {
+//				String str = "P" + permission.getRoleId() + "." + permission.getPermission() + "P ";
+//				if (permissionsSt.toString().indexOf(str) >= 0) {
+//					continue;
+//				}
+//				if ((permission.getPermission() == PERMISSION_WRITE||permission.getPermission() == PERMISSION_PUBLISH)) {
+//					if (conCats != null) {
+//						boolean hasWritePermission = false;
+//						for (Category conCat : conCats) {
+//							if (!categoryPermissions.containsKey(conCat.getInode())) {
+//								Map<String, Boolean> rolePers = new HashMap<String, Boolean>();
+//								for (Permission per:permissionAPI.getPermissions(conCat)){
+//									if (per.getPermission() == PERMISSION_WRITE) {
+//										rolePers.put(per.getRoleId(), true);
+//									}
+//								}
+//
+//								categoryPermissions.put(conCat.getInode(), rolePers);
+//							}
+//
+//							if (categoryPermissions.get(conCat.getInode()).containsKey(permission.getRoleId())) {
+//								hasWritePermission = true;
+//								break;
+//							}
+//						}
+//
+//						if (hasWritePermission){
+//							permissionsSt.append(str);
+//						}
+//					}else{
+//						permissionsSt.append(str);
+//					}
+//				}else{
+//					permissionsSt.append(str);
+//				}
+//
+//				try {
+//					if(APILocator.getRoleAPI().loadCMSOwnerRole().getId().equals(String.valueOf(permission.getRoleId()))){
+//						if(permission.getPermission() == PERMISSION_READ){
+//							ownerCanRead = true;
+//						}else if(permission.getPermission() == PERMISSION_WRITE){
+//							ownerCanRead = true;
+//							ownerCanWrite = true;
+//						}else if(permission.getPermission() == PERMISSION_PUBLISH){
+//							ownerCanRead = true;
+//							ownerCanWrite = true;
+//							ownerCanPub = true;
+//						}
+//					}
+//				} catch (DotDataException e) {
+//
+//				}
+//			}
+
 			searchResult.put("modUser", user);
 			searchResult.put("owner", con.getOwner());
-			searchResult.put("ownerCanRead", ownerCanRead.toString());
-			searchResult.put("ownerCanWrite", ownerCanWrite.toString());
-			searchResult.put("ownerCanPublish", ownerCanPub.toString());
+//			searchResult.put("ownerCanRead", ownerCanRead.toString());
+//			searchResult.put("ownerCanWrite", ownerCanWrite.toString());
+//			searchResult.put("ownerCanPublish", ownerCanPub.toString());
+
+			searchResult.put("userCanRead", userCanRead.toString());
+			searchResult.put("userCanWrite", userCanWrite.toString());
+			searchResult.put("userCanPublish", userCanPublish.toString());
 			Boolean working=con.isWorking();
 			searchResult.put("working", working.toString());
 			Boolean live=con.isLive();
@@ -1078,7 +1150,7 @@ public class ContentletAjax {
 			//searchResult.put("structureName", st.getVelocityVarName());
 			Long LanguageId=con.getLanguageId();
 			searchResult.put("languageId", LanguageId.toString());
-			searchResult.put("permissions", permissionsSt.toString());
+			//searchResult.put("permissions", permissionsSt.toString());
 
 			results.add(searchResult);
 		}

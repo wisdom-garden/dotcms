@@ -236,6 +236,11 @@ public class CategoryAPIImpl implements CategoryAPI {
 		return perAPI.filterCollection(categories, PermissionAPI.PERMISSION_READ, respectFrontendRoles, user);
 	}
 
+	public List<Category> findTopLevelCategories(User user, boolean respectFrontendRoles,int permissionType, String filter) throws DotDataException, DotSecurityException {
+		List<Category> categories = catFactory.findTopLevelCategoriesByFilter(filter, null);
+		return perAPI.filterCollection(categories, permissionType, respectFrontendRoles, user);
+	}
+
 	public PaginatedCategories findTopLevelCategories(User user, boolean respectFrontendRoles, int start, int count, String filter, String sort) throws DotDataException, DotSecurityException {
 		List<Category> categories = catFactory.findTopLevelCategoriesByFilter(filter, sort);
 		categories = perAPI.filterCollection(categories, PermissionAPI.PERMISSION_READ, respectFrontendRoles, user);
@@ -267,6 +272,12 @@ public class CategoryAPIImpl implements CategoryAPI {
 	public List<Category> findChildren(User user, String inode, boolean respectFrontendRoles, String filter) throws DotDataException, DotSecurityException {
 		List<Category> categories = catFactory.findChildrenByFilter(inode, filter, null);
 		categories = perAPI.filterCollection(categories, PermissionAPI.PERMISSION_READ, respectFrontendRoles, user);
+		return categories;
+	}
+
+	public List<Category> findChildren(User user, String inode, boolean respectFrontendRoles,int permissionType, String filter) throws DotDataException, DotSecurityException {
+		List<Category> categories = catFactory.findChildrenByFilter(inode, filter, null);
+		categories = perAPI.filterCollection(categories, permissionType, respectFrontendRoles, user);
 		return categories;
 	}
 
