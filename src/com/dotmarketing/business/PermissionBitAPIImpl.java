@@ -40,6 +40,7 @@ import com.dotmarketing.util.UtilMethods;
 import com.liferay.portal.NoSuchRoleException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
+import com.dotmarketing.portlets.categories.model.Category;
 
 /**
  * PermissionAPI is an API intended to be a helper class for class to get Permissions.  Classes within the dotCMS
@@ -431,7 +432,27 @@ public class PermissionBitAPIImpl implements PermissionAPI {
 			}
 		}
         
-		return doRolesHavePermission(userRoleIds,getPermissions(permissionable, true),permissionType);
+		boolean haspermission = doRolesHavePermission(userRoleIds,getPermissions(permissionable, true),permissionType);
+
+		if (haspermission  && (permissionable instanceof Contentlet) && (permissionType == PERMISSION_WRITE||permissionType == PERMISSION_PUBLISH)){
+			try{
+				List<Category> conCats = APILocator.getCategoryAPI().getParents((Contentlet)permissionable, user, false);
+				if (conCats != null && conCats.size() > 0){
+					boolean hasWrite = false;
+					for(Category cat:conCats){
+						if (this.doesUserHavePermission(cat, PERMISSION_WRITE, user)){
+							hasWrite =true;
+							break;
+						}
+					}
+					haspermission = hasWrite;
+				}
+			}
+			catch(Exception ex){
+				throw new DotRuntimeException(ex.getMessage(), ex);
+			}
+		}
+		return haspermission;
 	}
 
 	/* (non-Javadoc)

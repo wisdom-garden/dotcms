@@ -583,16 +583,22 @@ public class ContentletAjax {
 		for (String cat : categories) {
 			 try {
 				 category=catAPI.find(cat, currentUser, false);
+
+				 if(!first){
+					 categoriesvalues+=" ";
+				 }
+				 categoriesvalues+="categories:"+ category.getCategoryVelocityVarName();
+
+				 first = false;
+
+				 for(Category subCat:catAPI.findChildren(currentUser, cat, false, "")){
+					 categoriesvalues+=" categories:"+ subCat.getCategoryVelocityVarName();
+				 }
 			} catch (DotDataException e) {
 				Logger.error(this, "Error trying to obtain the categories", e);
 			} catch (DotSecurityException e) {
 				Logger.error(this, " Permission error trying to obtain the categories", e);
 			}
-			if(!first){
-				categoriesvalues+=" ";
-			}
-			categoriesvalues+="categories:"+ category.getCategoryVelocityVarName();
-			first = false;
 		}
 		categoriesvalues = categoriesvalues.trim();
 		for (int i = 0; i < fields.size(); i = i + 2) {
@@ -887,21 +893,21 @@ public class ContentletAjax {
 
 		List<String> expiredInodes=new ArrayList<String>();
 
-		Boolean hasCategoryField = false;
-		Map<String,Boolean> categoryids =new HashMap<String,Boolean>();
-		for (Field f : targetFields) {
-			if (f.getFieldType().equals(FieldType.CATEGORY.toString())){
-				hasCategoryField=true;
-				List<Category> cates=catAPI.findChildren(currentUser, f.getValues(), false, PermissionAPI.PERMISSION_WRITE, "");
-				for(Category cate:cates){
-					categoryids.put(cate.getInode(),true);
-					List<Category> subCates=catAPI.findChildren(currentUser, cate.getInode(), false, PermissionAPI.PERMISSION_WRITE, "");
-					for(Category subCate:subCates) {
-						categoryids.put(subCate.getInode(),true);
-					}
-				}
-			}
-		}
+//		Boolean hasCategoryField = false;
+//		Map<String,Boolean> categoryids =new HashMap<String,Boolean>();
+//		for (Field f : targetFields) {
+//			if (f.getFieldType().equals(FieldType.CATEGORY.toString())){
+//				hasCategoryField=true;
+//				List<Category> cates=catAPI.findChildren(currentUser, f.getValues(), false, PermissionAPI.PERMISSION_WRITE, "");
+//				for(Category cate:cates){
+//					categoryids.put(cate.getInode(),true);
+//					List<Category> subCates=catAPI.findChildren(currentUser, cate.getInode(), false, PermissionAPI.PERMISSION_WRITE, "");
+//					for(Category subCate:subCates) {
+//						categoryids.put(subCate.getInode(),true);
+//					}
+//				}
+//			}
+//		}
 
 		//Adding the query results
 		Contentlet con;
@@ -989,19 +995,19 @@ public class ContentletAjax {
 			Boolean userCanWrite = permissionAPI.doesUserHavePermission(con,PERMISSION_WRITE,currentUser);
 			Boolean userCanPublish = permissionAPI.doesUserHavePermission(con,PERMISSION_PUBLISH,currentUser);
 
-			if (hasCategoryField) {
-				List<Category> conCats = catAPI.getParents(con, currentUser, false);
-				Boolean hasPermission = false;
-				for (Category conCat : conCats) {
-					if (categoryids.containsKey(conCat.getInode())) {
-						hasPermission = true;
-					}
-				}
-				if (!hasPermission) {
-					userCanWrite = false;
-					userCanPublish = false;
-				}
-			}
+//			if (hasCategoryField) {
+//				List<Category> conCats = catAPI.getParents(con, currentUser, false);
+//				Boolean hasPermission = false;
+//				for (Category conCat : conCats) {
+//					if (categoryids.containsKey(conCat.getInode())) {
+//						hasPermission = true;
+//					}
+//				}
+//				if (!hasPermission) {
+//					userCanWrite = false;
+//					userCanPublish = false;
+//				}
+//			}
 
 //			PermissionAPI permissionAPI = APILocator.getPermissionAPI();
 //			List<Permission> permissions = null;

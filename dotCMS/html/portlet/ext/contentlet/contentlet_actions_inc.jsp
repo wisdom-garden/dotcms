@@ -7,7 +7,6 @@
 <%@page import="com.dotmarketing.portlets.workflows.model.*"%>
 <%@page import="com.dotmarketing.business.APILocator"%>
 <%
-
 if(user == null){
 	return;	
 }
@@ -30,17 +29,7 @@ try{
 catch(Exception e){
 	wfActions = new ArrayList();
 }
-
-
 %>
-
-<%--check permissions to display the save and publish button or not--%> 
-<%boolean canUserWriteToContentlet = conPerAPI.doesUserHavePermission(contentlet,PermissionAPI.PERMISSION_WRITE,user);%> 
-
-
-
-
-
 
 <%if(isContLocked && (contentEditable || isUserCMSAdmin)) {%>
 
@@ -61,7 +50,7 @@ catch(Exception e){
 
 
 
-<%if ((InodeUtils.isSet(contentlet.getInode())) && (canUserWriteToContentlet) && (!contentlet.isArchived()) && isContLocked && contentEditable) { %> 
+<%if ((InodeUtils.isSet(contentlet.getInode())) && (!contentlet.isArchived()) && isContLocked && contentEditable) { %>
 	<%if (!InodeUtils.isSet(contentlet.getInode()) || contentlet.isLive() || contentlet.isWorking()) { %> 
 		<%if (contentlet.isLive() && !contentlet.isWorking()) {%>
 			<a onClick="selectVersion('<%=contentlet.getInode()%>');">
@@ -89,21 +78,14 @@ catch(Exception e){
 			<%= UtilMethods.escapeSingleQuotes(LanguageUtil.get(pageContext, "Save")) %>
 		</a>
 	<%} %>
-<%}else if(!isContLocked) {%>
-
-
+<%}else if(!isContLocked && contentEditable) {%>
 	<%if(!scheme.isMandatory() || ( wfActionsAll != null && wfActionsAll.size() > 0)){ %>
-
-
-
-
 	    <a onClick="makeEditable('<%=contentlet.getInode() %>');" id="lockContentButton">
 			<span class="lockIcon"></span>
 			<%= UtilMethods.escapeSingleQuotes(LanguageUtil.get(pageContext, "Make-Editable")) %>
 		</a>
 	<%} %>
 <%}%>
-
 
 <%if(!scheme.isMandatory()){ %>
 	<%

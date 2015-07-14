@@ -1085,18 +1085,8 @@ public class EditContentletAction extends DotPortletAction implements DotPortlet
 		if(!UtilMethods.isSet(contentlet.getInode())) {
 		    req.setAttribute(WebKeys.CONTENT_EDITABLE, true);
 		}
-		else if(perAPI.doesUserHavePermission(contentlet, PermissionAPI.PERMISSION_WRITE, user) && workingContentlet.isLocked()){
-			List<Category> conCats = catAPI.getParents(contentlet, user, false);
-			Boolean hasPermission = false;
-			for (Category conCat : conCats) {
-				if (perAPI.doesUserHavePermission(conCat, PermissionAPI.PERMISSION_WRITE, user)) {
-					hasPermission = true;
-					break;
-				}
-			}
-
-			String lockedUserId = APILocator.getVersionableAPI().getLockedBy(workingContentlet);
-			if(hasPermission && user.getUserId().equals(lockedUserId)){
+		else if(perAPI.doesUserHavePermission(contentlet, PermissionAPI.PERMISSION_WRITE, user)){
+			if(!workingContentlet.isLocked() || user.getUserId().equals(APILocator.getVersionableAPI().getLockedBy(workingContentlet))){
 				req.setAttribute(WebKeys.CONTENT_EDITABLE, true);
 			}else{
 				req.setAttribute(WebKeys.CONTENT_EDITABLE, false);
