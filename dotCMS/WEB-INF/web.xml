@@ -698,7 +698,7 @@
         <servlet-class>org.tinymce.spellchecker.JMySpellCheckerServlet</servlet-class>
         <init-param>
           <param-name>preloadedLanguages</param-name>
-          <param-value>en_US;es_ES</param-value>
+          <param-value>en_US</param-value>
         </init-param>
         <load-on-startup>100</load-on-startup>
     </servlet>

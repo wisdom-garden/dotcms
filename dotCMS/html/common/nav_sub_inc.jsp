@@ -576,7 +576,7 @@ dojo.require("dojo.cookie");
 	    <% } %>
 
         <% if (request.getSession().getAttribute(com.dotcms.repackage.org.apache.struts.Globals.LOCALE_KEY) == null) { %>
-            <a href="#" id="language-trigger" onclick="toggleLanguage();" class="trigger-off"><%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-Language-en_US") %><i class="fa fa-angle-down"></i></a>
+            <a href="#" id="language-trigger" onclick="toggleLanguage();" class="trigger-off"><%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-Language-zh_MO") %><i class="fa fa-angle-down"></i></a>
         <% } else { %>
             <a href="#" id="language-trigger" onclick="toggleLanguage();" class="trigger-off"><%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-Language-" + ((Locale)request.getSession().getAttribute(com.dotcms.repackage.org.apache.struts.Globals.LOCALE_KEY)).getLanguage() + "_" + ((Locale)request.getSession().getAttribute(com.dotcms.repackage.org.apache.struts.Globals.LOCALE_KEY)).getCountry()) %><i class="fa fa-angle-down"></i></a>
         <% } %>
@@ -607,15 +607,23 @@ dojo.require("dojo.cookie");
     <div class="handle icon icon-popup-menu-handle"></div>
     <ul>
         <li>
-            <a href="javascript:switchLanguage('en_US')"><%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-Language-en_US") %></a>
+            <a href="javascript:switchLanguage('zh_MO')"><%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-Language-zh_MO") %></a>
         </li>
         <li>
-            <a href="javascript:switchLanguage('zh_MO')"><%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-Language-zh_MO") %></a>
+            <a href="javascript:switchLanguage('en_US')"><%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-Language-en_US") %></a>
         </li>
     </ul>
 </div>
 
 <% if ("true".equalsIgnoreCase(request.getParameter("showMenu"))) { %>
+    <%
+        int languageid = 2;
+        if (request.getSession().getAttribute(com.dotcms.repackage.org.apache.struts.Globals.LOCALE_KEY) == null
+                ||((Locale)request.getSession().getAttribute(com.dotcms.repackage.org.apache.struts.Globals.LOCALE_KEY)).getLanguage().equals("zh")){
+            languageid = 1;
+        }
+    %>
+
     <div id="uniformMenuTab">
         <ul class="uniform-menu">
             <li class="tronclass">
@@ -623,7 +631,7 @@ dojo.require("dojo.cookie");
                 <div><%= LanguageUtil.get(pageContext, "UniformMenu-TronClass") %></div>
             </li>
             <li class="portal">
-                <a href="/"></a>
+                <a href="/index?com.dotmarketing.htmlpage.language=<%= languageid %>"></a>
                 <div><%= LanguageUtil.get(pageContext, "UniformMenu-Portal") %></div>
             </li>
             <li class="personal-info">

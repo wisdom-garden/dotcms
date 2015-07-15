@@ -66,7 +66,7 @@ public abstract class TinyMCESpellCheckerServlet extends HttpServlet {
     private static final String DEFAULT_LANGUAGE = "en_US";
     private static final String GET_METHOD_RESPONSE_ERROR = "This servlet expects a JSON encoded body, POSTed to this URL";
 
-    private static final String DEFAULT_PRELOADED_LANGUAGES = "en_US,es_ES";
+    private static final String DEFAULT_PRELOADED_LANGUAGES = "en_US";
 
     private int maxSuggestionsCount = 25;
 
