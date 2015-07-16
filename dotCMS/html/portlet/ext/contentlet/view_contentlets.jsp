@@ -103,9 +103,11 @@
                 }
         }
 
-        //if (!InodeUtils.isSet(structureSelected) || !structures.contains(StructureCache.getStructureByInode(structureSelected))) {
-        //        structureSelected = "_all";
-        //}
+        if (!InodeUtils.isSet(structureSelected) || !structures.contains(StructureCache.getStructureByInode(structureSelected))) {
+            if (structures.size() > 0) {
+                structureSelected = structures.get(0).getInode();
+            }
+        }
 
 
         List<Field> fields = new ArrayList<Field>();
