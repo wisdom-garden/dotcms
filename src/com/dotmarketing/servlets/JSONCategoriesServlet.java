@@ -98,6 +98,14 @@ public class JSONCategoriesServlet extends HttpServlet implements Servlet {
 			List<Map<String,Object>> items = new ArrayList<Map<String,Object>>();
 			List<Category> categories = pagCategories.getCategories();
 
+			Boolean isTopLevelCategory = false;
+			List<Category> topCategories = catAPI.findTopLevelCategories(user, false);
+			for (Category category : topCategories) {
+				if (category.getInode().equals(inode)) {
+					isTopLevelCategory = true;
+				}
+			}
+
 			if(categories!=null) {
 				for (Category category : categories) {
 					Map<String,Object> catMap = new HashMap<String,Object>();
@@ -107,6 +115,7 @@ public class JSONCategoriesServlet extends HttpServlet implements Servlet {
 					catMap.put("category_velocity_var_name", category.getCategoryVelocityVarName());
 					catMap.put("sort_order", category.getSortOrder());
 					catMap.put("keywords", category.getKeywords());
+					catMap.put("is_parent_top_level_cat", isTopLevelCategory);
 					items.add(catMap);
 				}
 			}

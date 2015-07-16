@@ -174,7 +174,10 @@
 	/*  CATEGORIES GRID FUNCTIONS */
 
 	var addFormatter<%=counter%> = function(value, index) {
-
+		var isTopLevel = grid<%=counter%>.store.getValue(grid<%=counter%>.getItem(index), 'is_parent_top_level_cat');
+		if (isTopLevel) {
+			return "";
+		}
 		return "<a href=\"javascript:addCat<%=counter%>("+index+");\"><img src='/html/images/icons/plus-small.png' /></a>";
 	};
 
