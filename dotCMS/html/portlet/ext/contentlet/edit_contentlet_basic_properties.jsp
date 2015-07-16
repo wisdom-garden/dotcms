@@ -299,9 +299,9 @@
 	                    var selField = dojo.query('#combo_zone2 div.dijitInputField')[0];
 	                    dojo.style(selField, "backgroundImage", imagestyle);
 	                    dojo.style(selField, "backgroundRepeat", "no-repeat");
-	                    dojo.style(selField, "padding", "0px 0px 0px 20px");
+	                    dojo.style(selField, "padding", "0px 0px 0px 24px");
 	                    dojo.style(selField, "backgroundColor", "transparent");
-	                    dojo.style(selField, "backgroundPosition", "3px 6px");
+	                    dojo.style(selField, "backgroundPosition", "3px 5px");
 	                }
 	
 	                var storeData=<%=buff.toString()%>;
