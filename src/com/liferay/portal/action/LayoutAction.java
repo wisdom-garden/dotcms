@@ -165,6 +165,10 @@ public class LayoutAction extends Action {
 
 		String ctxPath = (String)ses.getAttribute(WebKeys.CTX_PATH);
 
+		if (layoutId == null) {
+			layoutId = "6813f1f9-b250-4e0a-a40c-706133e92510";
+		}
+
 		req.setAttribute(
 			WebKeys.FORWARD_URL,
 			ctxPath + "/portal" + PortalUtil.getAuthorizedPath(req) +

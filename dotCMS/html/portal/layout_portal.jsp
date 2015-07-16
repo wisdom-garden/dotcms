@@ -41,7 +41,7 @@
                         <%@ include file="/html/common/messages_inc.jsp" %>
                 </div>
 
-                <% if ("6813f1f9-b250-4e0a-a40c-706133e92510".equalsIgnoreCase(request.getParameter("p_l_id"))) { %>
+                <% if (layouts.length == 0 && "6813f1f9-b250-4e0a-a40c-706133e92510".equalsIgnoreCase(request.getParameter("p_l_id"))) { %>
                         <div id="noPermiissionTab">
                                 <div>
                                         <%= LanguageUtil.get(pageContext, "Enterprise-Web-Content-Management-No-Permission") %>
