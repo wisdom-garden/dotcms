@@ -347,7 +347,7 @@
 				<button dojoType="dijit.form.Button" onclick="doSearch<%=counter%>();" type="button" iconClass="searchIcon"><%= LanguageUtil.get(pageContext, "Search") %></button>
 				<button dojoType="dijit.form.Button" onclick="clearCatFilter<%=counter%>()" type="button" iconClass="resetIcon"><%= LanguageUtil.get(pageContext, "Clear") %></button>
 				<div id="all<%=counter%>" style="margin-top: 10px; margin-left: 50px; ">
-				<a href="javascript:delAll<%=counter%>()" style="font-size:11px">Delete All</a>
+				<a href="javascript:delAll<%=counter%>()" style="font-size:11px"><%= LanguageUtil.get(pageContext, "select-category-delete-all") %></a>
 		</div>
 		</div>
 
