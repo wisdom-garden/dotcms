@@ -3532,10 +3532,11 @@ public class UtilMethods {
                 session.removeAttribute(Globals.MESSAGE_KEY);
             }
             // set the preview mode
-            adminMode = (session.getAttribute(com.dotmarketing.util.WebKeys.ADMIN_MODE_SESSION) != null);
+//            adminMode = (session.getAttribute(com.dotmarketing.util.WebKeys.ADMIN_MODE_SESSION) != null);
 
             if (request.getParameter("livePage") != null && request.getParameter("livePage").equals("1")) {
 
+                session.setAttribute(com.dotmarketing.util.WebKeys.ADMIN_MODE_SESSION, "true");
                 session.setAttribute(com.dotmarketing.util.WebKeys.PREVIEW_MODE_SESSION, null);
                 request.setAttribute(com.dotmarketing.util.WebKeys.PREVIEW_MODE_SESSION, null);
                 session.setAttribute(com.dotmarketing.util.WebKeys.EDIT_MODE_SESSION, null);
@@ -3546,6 +3547,7 @@ public class UtilMethods {
 
             if (request.getParameter("previewPage") != null && request.getParameter("previewPage").equals("1")) {
 
+                session.setAttribute(com.dotmarketing.util.WebKeys.ADMIN_MODE_SESSION, "true");
                 session.setAttribute(com.dotmarketing.util.WebKeys.PREVIEW_MODE_SESSION, null);
                 request.setAttribute(com.dotmarketing.util.WebKeys.PREVIEW_MODE_SESSION, null);
                 session.setAttribute(com.dotmarketing.util.WebKeys.EDIT_MODE_SESSION, "true");
@@ -3555,13 +3557,17 @@ public class UtilMethods {
 
             if (request.getParameter("previewPage") != null && request.getParameter("previewPage").equals("2")) {
 
+                session.setAttribute(com.dotmarketing.util.WebKeys.ADMIN_MODE_SESSION, "true");
                 session.setAttribute(com.dotmarketing.util.WebKeys.PREVIEW_MODE_SESSION, "true");
                 request.setAttribute(com.dotmarketing.util.WebKeys.PREVIEW_MODE_SESSION, "true");
                 session.setAttribute(com.dotmarketing.util.WebKeys.EDIT_MODE_SESSION, null);
                 request.setAttribute(com.dotmarketing.util.WebKeys.EDIT_MODE_SESSION, null);
                 Logger.debug(VelocityServlet.class, "CMS FILTER Cleaning PREVIEW_MODE_SESSION PREVIEW!!!!");
             }
+            
+            adminMode = (session.getAttribute(com.dotmarketing.util.WebKeys.ADMIN_MODE_SESSION) != null);
         }
+
         return adminMode;
     }
 

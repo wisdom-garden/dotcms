@@ -95,6 +95,12 @@ public class CharsetEncodingFilter implements Filter {
 							Logger.warn(this, "Unable to retrieve user locale", e);
 						}
 	        		}
+					session.setAttribute(com.dotmarketing.util.WebKeys.PREVIEW_MODE_SESSION, null);
+					request.setAttribute(com.dotmarketing.util.WebKeys.PREVIEW_MODE_SESSION, null);
+					session.setAttribute(com.dotmarketing.util.WebKeys.EDIT_MODE_SESSION, null);
+					request.setAttribute(com.dotmarketing.util.WebKeys.EDIT_MODE_SESSION, null);
+					session.setAttribute(com.dotmarketing.util.WebKeys.ADMIN_MODE_SESSION, null);
+					request.setAttribute(com.dotmarketing.util.WebKeys.ADMIN_MODE_SESSION, null);
 	        	} else {
 	        	//if frontend the locale is defined by the dotCMS frontend language session variables
 	        		
