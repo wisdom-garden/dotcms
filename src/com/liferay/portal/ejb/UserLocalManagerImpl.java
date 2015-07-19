@@ -417,10 +417,10 @@ public class UserLocalManagerImpl implements UserLocalManager {
 			String firstName = user.getFirstName().replaceAll("\\s+", " ").trim();
 			user.setFirstName(firstName);
 		}
-		if (Validator.isNotNull(user.getLastName())) {
-			String lastName = user.getLastName().replaceAll("\\s+", " ").trim();
-			user.setLastName(lastName);
-		}
+//		if (Validator.isNotNull(user.getLastName())) {
+//			String lastName = user.getLastName().replaceAll("\\s+", " ").trim();
+//			user.setLastName(lastName);
+//		}
 		validate(user.getUserId(), user.getFirstName(), user.getLastName(), user.getEmailAddress(), user.getSmsId());
 		UserUtil.update(user);
 		return user;
@@ -511,9 +511,9 @@ public class UserLocalManagerImpl implements UserLocalManager {
 		if (Validator.isNull(firstName)) {
 			throw new UserFirstNameException();
 		}
-		else if (Validator.isNull(lastName)) {
-			throw new UserLastNameException();
-		}
+//		else if (Validator.isNull(lastName)) {
+//			throw new UserLastNameException();
+//		}
 
 		if (!autoUserId) {
 			if (Validator.isNull(userId)) {
@@ -626,9 +626,9 @@ public class UserLocalManagerImpl implements UserLocalManager {
 		if (Validator.isNull(firstName) || !ESAPI.validator().isValidInput("firstName", firstName, "UserName", 50, false)) {
 			throw new UserFirstNameException();
 		}
-		else if (Validator.isNull(lastName) || !ESAPI.validator().isValidInput("lastName", lastName, "UserName", 50, false)) {
-			throw new UserLastNameException();
-		}
+//		else if (!ESAPI.validator().isValidInput("lastName", lastName, "UserName", 50, false)) {
+//			throw new UserLastNameException();
+//		}
 
 		User user = UserUtil.findByPrimaryKey(userId);
 

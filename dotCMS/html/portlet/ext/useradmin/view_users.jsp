@@ -117,8 +117,8 @@
 										<% } %>
 										<dt><%= LanguageUtil.get(pageContext, "First-Name") %>:</dt>
 										<dd><input id="firstName" type="text" onkeyup="userInfoChanged()" required="true" invalidMessage="Required." dojoType="dijit.form.ValidationTextBox" /></dd>
-										<dt><%= LanguageUtil.get(pageContext, "Last-Name") %>:</dt>
-										<dd><input id="lastName" type="text" onkeyup="userInfoChanged()" required="true" invalidMessage="Required." dojoType="dijit.form.ValidationTextBox" /></dd>
+										<dt style="display:none"><%= LanguageUtil.get(pageContext, "Last-Name") %>:</dt>
+										<dd style="display:none"><input id="lastName" type="text" onkeyup="userInfoChanged()" dojoType="dijit.form.ValidationTextBox" /></dd>
 										<dt><%= LanguageUtil.get(pageContext, "Email-Address") %>:</dt>
 										<dd><input id="emailAddress" type="text" onkeyup="userEmailChanged()" required="true" invalidMessage="Required." dojoType="dijit.form.ValidationTextBox" /></dd>
 										<dt><%= LanguageUtil.get(pageContext, "Password") %>:</dt>
