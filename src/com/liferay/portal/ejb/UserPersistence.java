@@ -802,7 +802,8 @@ public class UserPersistence extends BasePersistence {
 		}
 		catch (HibernateException he) {
 			if (he instanceof ObjectNotFoundException) {
-				throw new NoSuchUserException();
+				//throw new NoSuchUserException();
+				return null;
 			}
 			else {
 				throw new SystemException(he);
