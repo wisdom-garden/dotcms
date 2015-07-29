@@ -1,3 +1,4 @@
+<%@page language="java" pageEncoding="UTF-8"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page import="com.dotmarketing.util.UtilMethods" %>
 <%@ page import="com.liferay.portal.language.LanguageUtil"%>
@@ -355,6 +356,12 @@
 
         function fillCategoryOptions (selectId, data) {
                 var select = document.getElementById(selectId);
+                var option = new Option ();
+                option.text = "+ 全部";
+                option.value = "all-category-bulletin";
+                option.style.marginLeft = "0px";
+                select.options[0] = option;
+
                 if (select != null) {
                         for (var i = 0; i < data.length; i++) {
                                 var option = new Option ();
@@ -375,7 +382,7 @@
                                         }
                                 }
                         %>
-                                select.options[i]=option;
+                                select.options[i+1]=option;
                         }
                 }
         }

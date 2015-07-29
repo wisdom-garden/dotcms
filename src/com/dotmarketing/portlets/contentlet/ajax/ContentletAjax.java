@@ -587,13 +587,23 @@ public class ContentletAjax {
 				 if(!first){
 					 categoriesvalues+=" ";
 				 }
-				 categoriesvalues+="categories:"+ category.getCategoryVelocityVarName();
+
+				 if (category == null) {
+					 if (cat.equals("all-category-bulletin")) {
+						 for (Category eachCategory : catAPI.findAll(currentUser, false)) {
+							 categoriesvalues += " categories:" + eachCategory.getCategoryVelocityVarName();
+						 }
+					 }
+				 }
+				 else {
+					 categoriesvalues+="categories:"+ category.getCategoryVelocityVarName();
+					 for(Category subCat:catAPI.findChildren(currentUser, cat, false, "")){
+						 categoriesvalues+=" categories:"+ subCat.getCategoryVelocityVarName();
+					 }
+				 }
 
 				 first = false;
 
-				 for(Category subCat:catAPI.findChildren(currentUser, cat, false, "")){
-					 categoriesvalues+=" categories:"+ subCat.getCategoryVelocityVarName();
-				 }
 			} catch (DotDataException e) {
 				Logger.error(this, "Error trying to obtain the categories", e);
 			} catch (DotSecurityException e) {
