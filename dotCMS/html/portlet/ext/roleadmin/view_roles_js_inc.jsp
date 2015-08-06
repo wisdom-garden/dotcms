@@ -617,7 +617,10 @@
 		} else {
 			dojo.byId("displayRoleName1").innerHTML= roleName;
 			dojo.byId("displayRoleName2").innerHTML= roleName;
-			dojo.byId("displayRoleName3").innerHTML = roleName;
+			var displayRoleName3 = dojo.byId("displayRoleName3");
+			if (displayRoleName3 != null) {
+				dojo.byId("displayRoleName3").innerHTML = roleName;
+			}
 		}
 	}
 

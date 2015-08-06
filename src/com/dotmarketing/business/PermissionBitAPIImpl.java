@@ -310,11 +310,13 @@ public class PermissionBitAPIImpl implements PermissionAPI {
 //            return true;
 
 		Role adminRole;
+		Role myadminRole;
 		Role anonRole;
 		Role frontEndUserRole;
 		Role cmsOwnerRole;
 		try {
 			adminRole = APILocator.getRoleAPI().loadCMSAdminRole();
+			myadminRole = APILocator.getRoleAPI().loadRoleById("0e752c4d-9474-4357-8451-d91957cf3ddf");
 			anonRole = APILocator.getRoleAPI().loadCMSAnonymousRole();
 			frontEndUserRole = APILocator.getRoleAPI().loadLoggedinSiteRole();
 			cmsOwnerRole = APILocator.getRoleAPI().loadCMSOwnerRole();
@@ -324,6 +326,9 @@ public class PermissionBitAPIImpl implements PermissionAPI {
 		}
 
 		if(user != null && APILocator.getRoleAPI().doesUserHaveRole(user, adminRole))
+			return true;
+
+		if (permissionable.getPermissionType().equals("com.dotmarketing.beans.UserProxy") && user !=null && APILocator.getRoleAPI().doesUserHaveRole(user, myadminRole))
 			return true;
 
 		List<RelatedPermissionableGroup> permissionDependencies = permissionable.permissionDependencies(permissionType);

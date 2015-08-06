@@ -226,29 +226,31 @@
 				<!-- END Permissions tab -->
 
 				<!-- START CMS Tabs -->
-				<div style="overflow-y:auto;" dojoType="dijit.layout.ContentPane" id="cmsTabsTab" title="<%= LanguageUtil.get(pageContext, "CMS-Tabs") %>">
+				<% if (isCMSAdmin) { %>
+					<div style="overflow-y:auto;" dojoType="dijit.layout.ContentPane" id="cmsTabsTab" title="<%= LanguageUtil.get(pageContext, "CMS-Tabs") %>">
 
-					<div class="yui-g nameHeader">
-						<div class="yu-u first">
-							<div class="nameText" id="displayRoleName3"></div>
+						<div class="yui-g nameHeader">
+							<div class="yu-u first">
+								<div class="nameText" id="displayRoleName3"></div>
+							</div>
+							<div class="yui-u" style="text-align:right;">
+								<button dojoType="dijit.form.Button" onclick="createNewLayout()" type="button" iconClass="plusIcon">
+									<%= LanguageUtil.get(pageContext, "create-custom-tab") %>
+								</button>
+							</div>
 						</div>
-						<div class="yui-u" style="text-align:right;">
-							<button dojoType="dijit.form.Button" onclick="createNewLayout()" type="button" iconClass="plusIcon">
-								<%= LanguageUtil.get(pageContext, "create-custom-tab") %>
-							</button>
+
+						<div id="loadingRoleLayoutsWrapper"><img src="/html/js/lightbox/images/loading.gif"></div>
+
+						<div id="roleLayoutsGridWrapper" style="overflow-y:auto;overflow-x:hidden;">
+							<div id="roleLayoutsGrid"></div>
+						</div>
+
+						<div class="buttonRow">
+							<button dojoType="dijit.form.Button" id="saveRoleLayoutsButton" onClick="saveRoleLayouts()" iconClass="saveIcon"><%= LanguageUtil.get(pageContext, "Save") %></button>
 						</div>
 					</div>
-
-					<div id="loadingRoleLayoutsWrapper"><img src="/html/js/lightbox/images/loading.gif"></div>
-
-					<div id="roleLayoutsGridWrapper" style="overflow-y:auto;overflow-x:hidden;">
-						<div id="roleLayoutsGrid"></div>
-					</div>
-
-					<div class="buttonRow">
-					    <button dojoType="dijit.form.Button" id="saveRoleLayoutsButton" onClick="saveRoleLayouts()" iconClass="saveIcon"><%= LanguageUtil.get(pageContext, "Save") %></button>
-					</div>
-				</div>
+				<% } %>
 				<!-- END CMS Tabs -->
 
 			</div>

@@ -4,6 +4,8 @@ import com.dotmarketing.business.APILocator;
 import com.dotmarketing.business.DotStateException;
 import com.dotmarketing.business.Role;
 import com.dotmarketing.business.RoleAPI;
+import com.dotmarketing.business.UserAPI;
+import com.liferay.portal.model.User;
 import com.dotmarketing.exception.DotDataException;
 import com.dotmarketing.exception.DotSecurityException;
 import com.dotmarketing.util.UtilMethods;
@@ -19,6 +21,8 @@ import com.dotcms.repackage.javax.ws.rs.Produces;
 import com.dotcms.repackage.javax.ws.rs.core.CacheControl;
 import com.dotcms.repackage.javax.ws.rs.core.Context;
 import com.dotcms.repackage.javax.ws.rs.core.Response;
+
+import java.lang.String;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,7 +77,10 @@ public class RoleResource extends WebResource {
 		String roleId = paramsMap.get("id");
 
 		RoleAPI roleAPI = APILocator.getRoleAPI();
-		
+		User user = (User) request.getAttribute("USER");
+		UserAPI userAPI = APILocator.getUserAPI();
+		String systemRoleId = "2adccac3-a56b-4078-be40-94e343f20712";
+
 		CacheControl cc = new CacheControl();
         cc.setNoCache( true );
 
@@ -88,6 +95,10 @@ public class RoleResource extends WebResource {
 			JSONArray jsonChildren = new JSONArray();
 
 			for(Role r : rootRoles) {
+				if (!userAPI.isCMSAdmin(user) && r.getId().equals(systemRoleId)) {
+					continue;
+				}
+
 				JSONObject jsonRoleChildObject = new JSONObject();
 				jsonRoleChildObject.put("id", r.getId());
 				jsonRoleChildObject.put("$ref", r.getId());
