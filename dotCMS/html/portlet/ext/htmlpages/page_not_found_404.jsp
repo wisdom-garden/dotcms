@@ -7,7 +7,7 @@
 	
 <html>  
 <head> 
-<link rel="shortcut icon" href="//dotcms.com/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="/html/images/favicon.ico" type="image/x-icon">
 <title>dotCMS: <%= LanguageUtil.get(pageContext, "404-page-not-found") %></title>
 
 <style media="all" type="text/css">
