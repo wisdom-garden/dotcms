@@ -19,6 +19,14 @@
 		<param-value>http://xxxxxx</param-value>
 	</context-param>
 	<context-param>
+		<param-name>user_timetable_url</param-name>
+		<param-value>http://xxxxxx</param-value>
+	</context-param>
+	<context-param>
+		<param-name>room_management_url</param-name>
+		<param-value>http://xxxxxx</param-value>
+	</context-param>
+	<context-param>
 		<param-name>default_role_id</param-name>
 		<param-value>xxx-xxxxx</param-value>
 	</context-param>

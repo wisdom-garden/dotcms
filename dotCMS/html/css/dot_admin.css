@@ -57,6 +57,14 @@
 	background-image: url(/html/images/site-management.png);
 }
 
+.uniform-menu .user-timetable a{
+	background-image: url(/html/images/site-user-timetable.png);
+}
+
+.uniform-menu .room-management a{
+	background-image: url(/html/images/site-room-management.png);
+}
+
 .closeTab{z-index:8000; position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255, 255, 255, 0.1);}
 
 .bannerBG{background:url(/html/images/skin/skin-sprite.png) repeat-x 0 0; height:146px; overflow:hidden; position:absolute; top:0; left:0;width:100%;z-index:-1;}

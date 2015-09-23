@@ -642,6 +642,14 @@ dojo.require("dojo.cookie");
                 <a href="/c/portal/layout"></a>
                 <div><%= LanguageUtil.get(pageContext, "UniformMenu-Site-Management") %></div>
             </li>
+            <li class="user-timetable">
+                <a href="<%= request.getServletContext().getInitParameter("user_timetable_url")%>"></a>
+                <div><%= LanguageUtil.get(pageContext, "UniformMenu-User-TimeTable") %></div>
+            </li>
+            <li class="room-management">
+                <a href="<%= request.getServletContext().getInitParameter("room_management_url")%>"></a>
+                <div><%= LanguageUtil.get(pageContext, "UniformMenu-Room-Management") %></div>
+            </li>
         </ul>
     </div>
 <% } %>
