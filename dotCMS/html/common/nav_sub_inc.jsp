@@ -650,6 +650,14 @@ dojo.require("dojo.cookie");
                 <a href="<%= request.getServletContext().getInitParameter("room_management_url")%>"></a>
                 <div><%= LanguageUtil.get(pageContext, "UniformMenu-Room-Management") %></div>
             </li>
+            <li class="iactivity">
+                <a href="<%= request.getServletContext().getInitParameter("iactivity_url")%>"></a>
+                <div><%= LanguageUtil.get(pageContext, "UniformMenu-iActivity") %></div>
+            </li>
+            <li class="iactivity-management">
+                <a href="<%= request.getServletContext().getInitParameter("iactivity_management_url")%>"></a>
+                <div><%= LanguageUtil.get(pageContext, "UniformMenu-iActivity-Management") %></div>
+            </li>
         </ul>
     </div>
 <% } %>
