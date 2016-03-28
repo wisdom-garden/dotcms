@@ -44,19 +44,19 @@
 }
 
 .uniform-menu .tronclass a{
-	background-image: url(/html/images/tronclass.png);
+	background-image: url(/html/images/site-tronclass.png);
 }
 
 .uniform-menu .portal a{
-	background-image: url(/html/images/portal.png);
+	background-image: url(/html/images/site-student-info.png);
 }
 
 .uniform-menu .personal-info a{
-	background-image: url(/html/images/personal-info.png);
+	background-image: url(/html/images/site-user-info.png);
 }
 
 .uniform-menu .site-management a{
-	background-image: url(/html/images/site-management.png);
+	background-image: url(/html/images/site-cms-admin.png);
 }
 
 .uniform-menu .user-timetable a{
@@ -67,12 +67,24 @@
 	background-image: url(/html/images/site-room-management.png);
 }
 
-.uniform-menu .iactivity a{
-	background-image: url(/html/images/site-kwnc-activity.png);
+.uniform-menu .activity a{
+	background-image: url(/html/images/site-activity.png);
 }
 
-.uniform-menu .iactivity-management a{
-	background-image: url(/html/images/site-kwnc-activity-manage.png);
+.uniform-menu .application-form a{
+	background-image: url(/html/images/site-application-form.png);
+}
+
+.uniform-menu .student-email a{
+	background-image: url(/html/images/site-student-email.png);
+}
+
+.uniform-menu .reservation-lab a{
+	background-image: url(/html/images/site-reservation-lab.png);
+}
+
+.uniform-menu .online-learning a{
+	background-image: url(/html/images/site-online-teaching.png);
 }
 
 .closeTab{z-index:8000; position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(255, 255, 255, 0.1);}

@@ -23,15 +23,27 @@
 		<param-value>http://xxxxxx</param-value>
 	</context-param>
 	<context-param>
+		<param-name>student_email_url</param-name>
+		<param-value>http://xxxxxx</param-value>
+	</context-param>
+	<context-param>
+		<param-name>reservation_lab_url</param-name>
+		<param-value>http://xxxxxx</param-value>
+	</context-param>
+	<context-param>
+		<param-name>application_form_url</param-name>
+		<param-value>http://xxxxxx</param-value>
+	</context-param>
+	<context-param>
+		<param-name>online_learning_url</param-name>
+		<param-value>http://xxxxxx</param-value>
+	</context-param>
+	<context-param>
+		<param-name>activity_url</param-name>
+		<param-value>http://xxxxxx</param-value>
+	</context-param>
+	<context-param>
 		<param-name>room_management_url</param-name>
-		<param-value>http://xxxxxx</param-value>
-	</context-param>
-	<context-param>
-		<param-name>iactivity_url</param-name>
-		<param-value>http://xxxxxx</param-value>
-	</context-param>
-	<context-param>
-		<param-name>iactivity_management_url</param-name>
 		<param-value>http://xxxxxx</param-value>
 	</context-param>
 	<context-param>

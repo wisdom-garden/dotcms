@@ -634,29 +634,41 @@ dojo.require("dojo.cookie");
                 <a href="/index?com.dotmarketing.htmlpage.language=<%= languageid %>"></a>
                 <div><%= LanguageUtil.get(pageContext, "UniformMenu-Portal") %></div>
             </li>
+            <li class="user-timetable">
+                <a href="<%= request.getServletContext().getInitParameter("user_timetable_url")%>"></a>
+                <div><%= LanguageUtil.get(pageContext, "UniformMenu-User-TimeTable") %></div>
+            </li>
+            <li class="student-email">
+                <a href="<%= request.getServletContext().getInitParameter("student_email_url")%>"></a>
+                <div><%= LanguageUtil.get(pageContext, "UniformMenu-Student-Email") %></div>
+            </li>
             <li class="personal-info">
                 <a href="<%= request.getServletContext().getInitParameter("personal_info_url")%>"></a>
                 <div><%= LanguageUtil.get(pageContext, "UniformMenu-Personal-Info") %></div>
+            </li>
+            <li class="reservation-lab">
+                <a href="<%= request.getServletContext().getInitParameter("reservation_lab_url")%>"></a>
+                <div><%= LanguageUtil.get(pageContext, "UniformMenu-Reservation-Lab") %></div>
+            </li>
+            <li class="activity">
+                <a href="<%= request.getServletContext().getInitParameter("activity_url")%>"></a>
+                <div><%= LanguageUtil.get(pageContext, "UniformMenu-Activity") %></div>
+            </li>
+            <li class="application-form">
+                <a href="<%= request.getServletContext().getInitParameter("application_form_url")%>"></a>
+                <div><%= LanguageUtil.get(pageContext, "UniformMenu-Application-Form") %></div>
+            </li>
+            <li class="online-learning">
+                <a href="<%= request.getServletContext().getInitParameter("online_learning_url")%>"></a>
+                <div><%= LanguageUtil.get(pageContext, "UniformMenu-Online-Learning") %></div>
             </li>
             <li class="site-management">
                 <a href="/c/portal/layout"></a>
                 <div><%= LanguageUtil.get(pageContext, "UniformMenu-Site-Management") %></div>
             </li>
-            <li class="user-timetable">
-                <a href="<%= request.getServletContext().getInitParameter("user_timetable_url")%>"></a>
-                <div><%= LanguageUtil.get(pageContext, "UniformMenu-User-TimeTable") %></div>
-            </li>
             <li class="room-management">
                 <a href="<%= request.getServletContext().getInitParameter("room_management_url")%>"></a>
                 <div><%= LanguageUtil.get(pageContext, "UniformMenu-Room-Management") %></div>
-            </li>
-            <li class="iactivity">
-                <a href="<%= request.getServletContext().getInitParameter("iactivity_url")%>"></a>
-                <div><%= LanguageUtil.get(pageContext, "UniformMenu-iActivity") %></div>
-            </li>
-            <li class="iactivity-management">
-                <a href="<%= request.getServletContext().getInitParameter("iactivity_management_url")%>"></a>
-                <div><%= LanguageUtil.get(pageContext, "UniformMenu-iActivity-Management") %></div>
             </li>
         </ul>
     </div>
