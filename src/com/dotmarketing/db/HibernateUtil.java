@@ -806,7 +806,7 @@ public class HibernateUtil {
 		} catch (Exception ex) {
 			Logger.debug(HibernateUtil.class, "---------- DotHibernate: error on rollbackTransaction ---------------",
 					ex);
-			Logger.error(HibernateUtil.class, "---------- DotHibernate: error on rollbackTransaction ---------------\n"+ ex);
+			Logger.error(HibernateUtil.class, "---------- DotHibernate: error on rollbackTransaction ---------------", ex);
 			// throw new DotRuntimeException(ex.toString());
 		}
 
@@ -818,7 +818,7 @@ public class HibernateUtil {
 		} catch (Exception ex) {
 			Logger.debug(HibernateUtil.class, "---------- DotHibernate: error on rollbackTransaction ---------------",
 					ex);
-			Logger.error(HibernateUtil.class, "---------- DotHibernate: error on rollbackTransaction ---------------\n"+ ex);
+			Logger.error(HibernateUtil.class, "---------- DotHibernate: error on rollbackTransaction ---------------", ex);
 			// throw new DotRuntimeException(ex.toString());
 		}
 

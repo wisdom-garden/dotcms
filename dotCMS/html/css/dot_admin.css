@@ -21,7 +21,6 @@
 
 .uniform-menu li {
 	display: inline-block;
-	margin-right: 36px;
 	margin-bottom: 36px;
 	text-align: center;
 	color: rgb(90,90,90);
@@ -32,6 +31,8 @@
 	display: block;
 	width: 150px;
 	height: 150px;
+	margin-left: 18px;
+	margin-right: 18px;
 	border-radius: 10px;
 }
 

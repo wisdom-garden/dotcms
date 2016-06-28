@@ -357,6 +357,7 @@ public class ReindexThread extends Thread {
 	        HibernateUtil.commitTransaction();
 	    }
 	    catch(Exception ex) {
+			Logger.error(HibernateUtil.class, "---------- DotHibernate: error on rollbackTransaction ---------------", ex);
 	        HibernateUtil.rollbackTransaction();
 	    }
 	    finally {
