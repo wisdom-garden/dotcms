@@ -316,14 +316,14 @@
         });
         menu.addChild(menuItem1);
 
-        var menuItem2 = new dijit.MenuItem({
-            label: "<%= UtilMethods.escapeSingleQuotes(LanguageUtil.get(pageContext, "Import-Content" )) %>",
-                        iconClass: "uploadIcon",
-                        onClick: function() {
-               	window.location='/c/portal/layout?p_l_id=<%= layout.getId() %>&dm_rlout=1&p_p_id=EXT_11&p_p_action=1&p_p_state=maximized&_EXT_11_struts_action=/ext/contentlet/import_contentlets&selectedStructure=' + document.getElementById("structureInode").value;
-            }
-        });
-        menu.addChild(menuItem2);
+        <%--var menuItem2 = new dijit.MenuItem({--%>
+            <%--label: "<%= UtilMethods.escapeSingleQuotes(LanguageUtil.get(pageContext, "Import-Content" )) %>",--%>
+                        <%--iconClass: "uploadIcon",--%>
+                        <%--onClick: function() {--%>
+               	<%--window.location='/c/portal/layout?p_l_id=<%= layout.getId() %>&dm_rlout=1&p_p_id=EXT_11&p_p_action=1&p_p_state=maximized&_EXT_11_struts_action=/ext/contentlet/import_contentlets&selectedStructure=' + document.getElementById("structureInode").value;--%>
+            <%--}--%>
+        <%--});--%>
+        <%--menu.addChild(menuItem2);--%>
 
         var button = new dijit.form.ComboButton({
             label: "<%= UtilMethods.escapeSingleQuotes(LanguageUtil.get(pageContext, "Add-New-Content" )) %>",
