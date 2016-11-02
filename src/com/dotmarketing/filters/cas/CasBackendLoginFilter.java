@@ -76,6 +76,11 @@ public class CasBackendLoginFilter implements Filter {
             }
             else{
                 user = APILocator.getUserAPI().loadByUserByEmail(email, APILocator.getUserAPI().getSystemUser(), false);
+
+                if (!APILocator.getRoleAPI().doesUserHaveRole(user, request.getServletContext().getInitParameter("default_role_id"))){
+                    APILocator.getRoleAPI().addRoleToUser(request.getServletContext().getInitParameter("default_role_id"), user);
+                }
+
                 if (!user.getFirstName().equals(principal.getAttributes().get("name").toString())){
                     user.setFirstName(principal.getAttributes().get("name").toString());
                     UserLocalManagerUtil.updateUser(user);
